@@ -67,4 +67,6 @@
 .container {
     padding: 2rem 0rem;
 }
-
+.img-responsive{
+    width: 100%;
+}
