@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <meta name="author" content="Codecool" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta charset="utf-8"/>
+    <meta name="author" content="Codecool"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <title>Tip Top Shop</title>
 
@@ -14,16 +14,21 @@
 
     <!--Latest compiled and minified Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css"/>
 
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
@@ -32,115 +37,132 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Tip Top Shop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">All Products</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Large modal -->
-            <button type="button"  data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="container main-section">
-                            <div class="row">
-                                <div class="col-lg-12 pb-2">
-                                    <h4>Shoping Cart</h4>
-                                </div>
-                                <div class="col-lg-12 pl-3 pt-3">
-                                    <table class="table table-hover border bg-white">
-                                        <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th style="width:10%;">Quantity</th>
-                                            <th>Subtotal</th>
-                                            <th>Action</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-lg-2 Product-img">
-                                                        <img src="https://images.unsplash.com/photo-1562106783-b9ca87a40fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=60" alt="..." class="img-responsive" />
-                                                    </div>
-                                                    <div class="col-lg-10">
-                                                        <h4 class="nomargin">GUYA</h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td> 12,000 </td>
-                                            <td data-th="Quantity">
-                                                <input type="number" class="form-control text-center" value="1">
-                                            </td>
-                                            <td>12,000</td>
-                                            <td class="actions" data-th="" style="width:10%;">
-                                                <button class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-lg-2 Product-img">
-                                                        <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" alt="..." class="img-responsive" />
-                                                    </div>
-                                                    <div class="col-lg-10">
-                                                        <h4 class="nomargin">COCO OIL</h4>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td> 35,000 </td>
-                                            <td data-th="Quantity">
-                                                <input type="number" class="form-control text-center" value="1">
-                                            </td>
-                                            <td> 35,000 </td>
-                                            <td class="actions" data-th="" style="width:10%;">
-                                                <button class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i></button>
-                                                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <td><a href="#" class="btn btn-info text-white"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-                                            <td colspan="2" class="hidden-xs"></td>
-                                            <td class="hidden-xs text-center" style="width:10%;"><strong>Total : 47,000</strong></td>
-                                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
+<div class="nav-bar">
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <div class="dropdown-class">
+        <button class="dropdown-button">Cloths
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="#">Coats</a>
+            <a href="#">T-Shirts</a>
+            <a href="#">Denim</a>
+        </div>
+    </div>
+    <div class="dropdown-class">
+        <button class="dropdown-button">Shoes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="#">Heels</a>
+            <a href="#">Sneakers</a>
+            <a href="#">Boots</a>
+        </div>
+    </div>
+
+    <div class="dropdown-class">
+        <button class="dropdown-button">Accessories
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="#">Glasses</a>
+            <a href="#">Jewelery</a>
+            <a href="#">Other</a>
+        </div>
+    </div>
+    <!--Large modal-->
+    <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i class="fa fa-shopping-cart"></i> Cart
+        <span>0</span>
+    </button>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container main-section">
+                    <div class="row">
+                        <div class="col-lg-12 pb-2">
+                            <h4>Shoping Cart</h4>
+                        </div>
+                        <div class="col-lg-12 pl-3 pt-3">
+                            <table class="table table-hover border bg-white">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th style="width:10%;">Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-2 Product-img">
+                                                <img src="https://images.unsplash.com/photo-1562106783-b9ca87a40fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=60" alt="..." class="img-responsive" />
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <h4 class="nomargin">GUYA</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td> 12,000 </td>
+                                    <td data-th="Quantity">
+                                        <input type="number" class="form-control text-center" value="1">
+                                    </td>
+                                    <td>12,000</td>
+                                    <td class="actions" data-th="" style="width:10%;">
+                                        <button class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-lg-2 Product-img">
+                                                <img src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" alt="..." class="img-responsive" />
+                                            </div>
+                                            <div class="col-lg-10">
+                                                <h4 class="nomargin">COCO OIL</h4>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td> 35,000 </td>
+                                    <td data-th="Quantity">
+                                        <input type="number" class="form-control text-center" value="1">
+                                    </td>
+                                    <td> 35,000 </td>
+                                    <td class="actions" data-th="" style="width:10%;">
+                                        <button class="btn btn-warning btn-sm"><i class="fa fa-refresh"></i></button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td><a href="#" class="btn btn-info text-white"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                                    <td colspan="2" class="hidden-xs"></td>
+                                    <td class="hidden-xs text-center" style="width:10%;"><strong>Total : 47,000</strong></td>
+                                    <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</nav>
+</div>
+</div>
+
 <!-- Header-->
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Tip Top Shop</h1>
-            <p class="lead fw-normal text-white-50 mb-0">All retro thinks you can imagine!!</p>
+            <p class="lead fw-normal text-white-50 mb-0">All retro stuffs you can imagine!!</p>
         </div>
     </div>
 </header>
@@ -151,8 +173,11 @@
 
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card" th:id="${prod.id}">
-                <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+
+            <div class="card">
+                <img class="" src="http://placehold.it/400x250/000/fff"
+                     th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt=""/>
+
                 <div class="card-header">
                     <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                     <p class="card-text" th:text="${prod.description}">Product description... </p>
