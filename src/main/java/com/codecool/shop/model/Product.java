@@ -1,5 +1,7 @@
 package com.codecool.shop.model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
 import java.util.Currency;
 
@@ -11,8 +13,10 @@ public class Product extends BaseModel {
     private Supplier supplier;
 
 
-    public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
-        super(name, description);
+
+    public Product(String name, BigDecimal defaultPrice, String currencyString, String description,
+                   ProductCategory productCategory, Supplier supplier, int img) {
+        super(name, description, img);
         this.setPrice(defaultPrice, currencyString);
         this.setSupplier(supplier);
         this.setProductCategory(productCategory);

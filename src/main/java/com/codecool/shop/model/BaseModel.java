@@ -1,21 +1,30 @@
 package com.codecool.shop.model;
 
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class BaseModel {
 
     protected int id;
     protected String name;
     protected String description;
+    private BufferedImage img;
+    private int imgNumber;
+    ArrayList<BufferedImage> imgs = new ArrayList<BufferedImage>();
 
     public BaseModel(String name) {
         this.name = name;
     }
 
-    public BaseModel(String name, String description) {
+    public BaseModel(String name, String description, int img) {
         this.name = name;
         this.description = description;
+        this.imgNumber = img;
     }
 
 
@@ -41,6 +50,25 @@ public class BaseModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public BufferedImage getImg() {
+        return img;
+    }
+
+    public void setImg(BufferedImage img) {
+        this.img = img;
+    }
+
+    public imgSelector(){
+        try {
+            img = ImageIO.read(new File("strawberry.jpg"));
+
+        } catch (IOException e) {
+        }
+    }
+    public setUpImgs(){
+
     }
 
     @Override
