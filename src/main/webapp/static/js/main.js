@@ -4,6 +4,4 @@ function main(){
     putProductToShoppingCart()
 }
 
-
-
 main();
