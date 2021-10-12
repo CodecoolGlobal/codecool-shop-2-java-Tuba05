@@ -1,13 +1,21 @@
 package com.codecool.shop.model;
 
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class BaseModel {
 
     protected int id;
     protected String name;
     protected String description;
+//    private BufferedImage img;
+//    private int imgNumber;
+//    ArrayList<BufferedImage> imgs = new ArrayList<>();
 
     public BaseModel(String name) {
         this.name = name;
@@ -16,6 +24,7 @@ public class BaseModel {
     public BaseModel(String name, String description) {
         this.name = name;
         this.description = description;
+//        this.imgNumber = img;
     }
 
 
@@ -42,6 +51,31 @@ public class BaseModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+//    public BufferedImage getImg() {
+//        return img;
+//    }
+//
+//    public void setImg(BufferedImage img) {
+//        this.img = img;
+//    }
+//
+//    public ArrayList<BufferedImage> getImgs() {
+//        return imgs;
+//    }
+//
+//    public void imgSelector(int number){
+//        try {
+//            img = ImageIO.read(new File("product_"+number+".jpg"));
+//            imgs.add(img);
+//        } catch (IOException e) {
+//        }
+//    }
+//    public void setUpImgs(){
+//        for(int i=0; i<4;i++){
+//            imgSelector(i);
+//        }
+//    }
 
     @Override
     public String toString() {
