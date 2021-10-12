@@ -12,4 +12,9 @@ import java.util.Map;
 
 @WebServlet(urlPatterns = {"/shopping-cart"})
 public class ShoppingCartServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
 }
