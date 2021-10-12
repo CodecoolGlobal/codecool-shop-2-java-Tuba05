@@ -11,7 +11,9 @@ export function putProductToShoppingCart() {
 }
 
 function shoppingCartContentCreator(data){
-
+    let counter = 0;
+    counter++;
+    productInCartCounter(counter);
     let contentField = document.getElementById("cart-content");
     contentField.innerHTML +=
         `<tr><td>
@@ -34,7 +36,6 @@ function shoppingCartContentCreator(data){
                 <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
             </td>
         </tr>`
-
 }
 
 function productFetch(url){
@@ -42,5 +43,11 @@ function productFetch(url){
         .then(r=>r.json())
         .then(data=>shoppingCartContentCreator(data));
 
+}
+
+function productInCartCounter(number){
+    let counter = document.getElementById("productnumber");
+    let currentNumber = parseInt(counter.innerText);
+    counter.innerHTML = (currentNumber + number)
 }
 
