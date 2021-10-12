@@ -2,25 +2,19 @@ export function putProductToShoppingCart() {
 
     let putCartButton = document.querySelectorAll(".card-btn")
 
-    // console.log(putCartButton);
     for (let successButton of putCartButton) {
-
         successButton.addEventListener("click", () => {
-
-            // let url = "/shoppingcart?id=1";
-            // productFetch(url)
-            console.log(successButton.children.prototype.id);
+            let url = `/shoppingcart?id=${successButton.id}`;
+            productFetch(url);
         })
     }
 }
 
-
 function shoppingCartContentCreator(data){
-    console.log(data);
+
     let contentField = document.getElementById("cart-content");
-    contentField.innerHTML = "";
     contentField.innerHTML +=
-        `<td>
+        `<tr><td>
                 <div class="row" >
                     <div class="col-lg-2 Product-img">
                         <img src="https://images.unsplash.com/photo-1562106783-b9ca87a40fc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=60" alt="..." class="img-responsive" />
