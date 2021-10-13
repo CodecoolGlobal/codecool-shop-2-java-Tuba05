@@ -33,15 +33,15 @@ public class ShoppingCartServlet extends HttpServlet {
 
         String responsId = request.getParameter("id");
         int id = Integer.parseInt(responsId);
-
         Product product = productDao.find(id);
 
         // add Mem
         shoppingCartDataStore.add(product);
+        Product currentProduct = shoppingCartDataStore.find(id);
 
         Gson gson = new Gson();
-        System.out.println(gson.toJson(shoppingCartDataStore.getAll()));
+
         PrintWriter out = response.getWriter();
-        out.println(gson.toJson(product));
+        out.println(gson.toJson(currentProduct));
     }
 }
