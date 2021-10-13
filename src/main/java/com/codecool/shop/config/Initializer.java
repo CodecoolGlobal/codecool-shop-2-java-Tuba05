@@ -31,7 +31,7 @@ public class Initializer implements ServletContextListener {
         //setting up a new supplier
         Supplier hotStuff = new Supplier("HotStuff", "Glasses");
         supplierDataStore.add(hotStuff);
-        Supplier flash = new Supplier("Flash", "Jewelery");
+        Supplier flash = new Supplier("Flash", "Jewellery");
         supplierDataStore.add(flash);
         Supplier flux = new Supplier("FluxMax", "Fluxus");
         supplierDataStore.add(flux);
@@ -47,13 +47,17 @@ public class Initializer implements ServletContextListener {
         //setting up a new product category
 
         ProductCategory glasses = new ProductCategory("Glasses", "Accessories", "Glasses for everyone.");
-        ProductCategory jewelery = new ProductCategory("Jewelery", "Accessories", "Bling-bling.");
+        ProductCategory jewelery = new ProductCategory("Jewellery", "Accessories", "Bling-bling.");
         ProductCategory other = new ProductCategory("Other", "Accessories", "Everything else.");
         productCategoryDataStore.add(glasses);
 
         //setting up products and printing it
         productDataStore.add(new Product("Striped sunglasses", new BigDecimal("2.9"), "USD", "Super trendy party glasses.", glasses, hotStuff));
+        productDataStore.add(new Product("Break sunglasses", new BigDecimal("4.9"), "USD", "Must-have party accessory.", glasses, hotStuff));
+        productDataStore.add(new Product("Sophia Loren glasses", new BigDecimal("19.9"), "USD", "Classy glasses.", glasses, flash));
         productDataStore.add(new Product("Earrings", new BigDecimal("9.9"), "USD", "Neon earrings.", jewelery, flash));
+        productDataStore.add(new Product("Bracelet", new BigDecimal("5.9"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
+        productDataStore.add(new Product("Scrunchie", new BigDecimal("0.9"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
         productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985.0"), "USD", "Takes you back to the future.", other, flux));
 
 
