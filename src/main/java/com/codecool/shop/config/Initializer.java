@@ -41,7 +41,7 @@ public class Initializer implements ServletContextListener {
         //setting up a new department
 
         Department accessories = new Department("Accessories");
-        Department clothes = new Department("Cloths");
+        Department clothes = new Department("Clothes");
         Department shoes = new Department("Shoes");
 
         //setting up a new product category
