@@ -1,9 +1,8 @@
+import { putProductToShoppingCart } from './shoppingCart.js';
+
 function main(){
-    shoppingCart()
-}
-function shoppingCart(){
+    putProductToShoppingCart()
 
 }
-
 
 main();
