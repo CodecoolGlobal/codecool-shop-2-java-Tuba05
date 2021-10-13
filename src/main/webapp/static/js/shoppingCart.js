@@ -47,7 +47,7 @@ function productFetch(url){
 
 function productInCartCounter(number){
     let counter = document.getElementById("productnumber");
+    // counter.parentElement.style.background = rgb();
     let currentNumber = parseInt(counter.innerText);
-    counter.innerHTML = (currentNumber + number)
+    counter.innerHTML = (currentNumber + number);
 }
-
