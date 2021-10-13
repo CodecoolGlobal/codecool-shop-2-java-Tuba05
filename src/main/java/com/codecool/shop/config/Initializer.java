@@ -6,6 +6,7 @@ import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
+import com.codecool.shop.model.Department;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -39,6 +40,12 @@ public class Initializer implements ServletContextListener {
 
 
 
+        //setting up a new department
+
+        Department accessories = new Department("Accessories");
+        Department clothes = new Department("Cloths");
+        Department shoes = new Department("Shoes");
+
         //setting up a new product category
 
         ProductCategory glasses = new ProductCategory("Glasses", "Accessories", "Glasses for everyone.");
@@ -51,12 +58,9 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Earrings", new BigDecimal("9.9"), "USD", "Neon earrings.", jewelery, flash));
         productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985.0"), "USD", "Takes you back to the future.", other, flux));
 
-        ProductCategory accessories = new ProductCategory("Glasses", "Accessories", "A thing which can be added to something else in order to make it more useful, versatile, or attractive.");
-        ProductCategory clothes = new ProductCategory("Denim", "Clothes", "Items worn to cover the body..");
-        ProductCategory shoes = new ProductCategory("Sneakers", "Shoes", "A covering for the foot, typically made of leather, having a sturdy sole and not reaching above the ankle.");
 
-        productCategoryDataStore.add(accessories);
-        productCategoryDataStore.add(clothes);
-        productCategoryDataStore.add(shoes);
+//        productCategoryDataStore.add(accessories);
+//        productCategoryDataStore.add(clothes);
+//        productCategoryDataStore.add(shoes);
     }
 }
