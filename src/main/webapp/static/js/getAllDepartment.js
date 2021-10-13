@@ -1,5 +1,8 @@
+// import {getAllProducts, cardFactory, htmlFactory} from "./getAllProducts";
+
 window.onload = (event) => {
     init();
+    setTimeout(addEventListenerToButton, 200);
 }
 
 function init() {
@@ -30,10 +33,22 @@ function htmlFactory(item) {
                 </div>
                 <div class="card-body">
                     <div class="card-btn">
-                        <a class="btn btn-success" id="${item.name}" >See all</a>
+                        <a class="btn btn-success" id="see-all" data-department="${item.name}" >See all</a>
                     </div>
                 </div>
             </div>
             </div>
     `
+}
+
+function addEventListenerToButton() {
+    const seeAllButtons = document.querySelectorAll("#see-all");
+    console.log(seeAllButtons);
+    seeAllButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            console.log("clicked");
+
+            // getAllProducts();
+        })
+    })
 }

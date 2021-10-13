@@ -1,4 +1,4 @@
-function init() {
+function getAllProducts() {
     fetch(`/api/get_all_products`)
         .then(response => response.json())
         .then(data => {
@@ -37,5 +37,6 @@ function htmlFactory(item) {
     `
 }
 
+export { getAllProducts, cardFactory, htmlFactory };
 //init()
 
