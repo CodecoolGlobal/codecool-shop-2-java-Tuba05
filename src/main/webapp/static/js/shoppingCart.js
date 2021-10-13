@@ -4,7 +4,7 @@ export function putProductToShoppingCart() {
 
     for (let successButton of putCartButton) {
         successButton.addEventListener("click", () => {
-            let url = `/shoppingcart?id=${successButton.id}`;
+            let url = `/shoppingcartadd?id=${successButton.id}`;
             productFetch(url);
 
         })
@@ -49,7 +49,6 @@ function productFetch(url){
 
 function productInCartCounter(number){
     let counter = document.getElementById("productnumber");
-    // counter.parentElement.style.background = rgb();
     let currentNumber = parseInt(counter.innerText);
     counter.innerHTML = (currentNumber + number);
 
@@ -59,10 +58,9 @@ export function deleteProductFromCart(){
     let deleteButtons = document.querySelectorAll("#delete-button")
     for (let deleteButton of deleteButtons) {
         deleteButton.addEventListener("click", () => {
-            console.log(deleteButton.parentElement.id)
             deleteButton.parentElement.parentElement.remove();
-            // let url = `/shoppingcart?id=${successButton.id}`;
-            // productFetch(url);
+            let url = `/shoppingcartdelete?id=${deleteButton.parentElement.id}`;
+            productFetch(url);
         })
     }
 }

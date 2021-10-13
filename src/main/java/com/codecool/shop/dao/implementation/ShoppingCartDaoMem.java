@@ -27,12 +27,12 @@ public class ShoppingCartDaoMem implements ShoppingCartDao {
 
     @Override
     public void add(Product product) {
-        product.setId(data.size() + 1);
-        data.add(product);
+                data.add(product);
     }
 
     @Override
     public Product find(int id) {
+        System.out.println(data.size());
         return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
     }
 

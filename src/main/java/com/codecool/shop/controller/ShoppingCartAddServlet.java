@@ -20,8 +20,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ShoppingCartServlet", urlPatterns = "/shoppingcart")
-public class ShoppingCartServlet extends HttpServlet {
+@WebServlet(name = "ShoppingCartAddServlet", urlPatterns = "/shoppingcartadd")
+public class ShoppingCartAddServlet extends HttpServlet {
     ProductDao productDao = ProductDaoMem.getInstance();
     ShoppingCartDao shoppingCartDataStore = ShoppingCartDaoMem.getInstance();
 
@@ -35,8 +35,8 @@ public class ShoppingCartServlet extends HttpServlet {
         int id = Integer.parseInt(responsId);
         Product product = productDao.find(id);
 
-        // add Mem
-        shoppingCartDataStore.add(product);
+        shoppingCartDataStore.add(product); // add Mem
+
         Product currentProduct = shoppingCartDataStore.find(id);
 
         Gson gson = new Gson();
