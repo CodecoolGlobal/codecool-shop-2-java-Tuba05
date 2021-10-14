@@ -30,7 +30,7 @@ function htmlFactory(item) {
                 </div>
                 <div class="card-body">
                     <div class="card-btn">
-                        <a class="btn btn-success see-all-product" data-category="${item.name}" >See products</a>
+                        <a class="btn btn-success see-all-product" data-category="${item.name}" style="background: #ffd900; color: #333333; border-color: #ffd900" >See products</a>
                     </div>
                 </div>
             </div>
