@@ -77,6 +77,13 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Earrings", new BigDecimal("9.9"), "USD", "Neon earrings.", jewelery, flash));
         productDataStore.add(new Product("Bracelet", new BigDecimal("5.9"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
         productDataStore.add(new Product("Scrunchie", new BigDecimal("0.9"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
+        productDataStore.add(new Product("Multicolor heels", new BigDecimal("29.9"), "USD", "Must-have item.", heels, hotStuff));
+        productDataStore.add(new Product("Rainbow heels", new BigDecimal("29.9"), "USD", "Party Queen heels.", heels, hotStuff));
+        productDataStore.add(new Product("Classic Nike", new BigDecimal("99.9"), "USD", "Must-have item.", sneakers, flash));
+        productDataStore.add(new Product("Reebok", new BigDecimal("69.9"), "USD", "Iconic sneakers.", sneakers, hotStuff));
+        productDataStore.add(new Product("Red boot", new BigDecimal("39.9"), "USD", "Keeps you warm.", boots, flash));
+        productDataStore.add(new Product("Boot with heels", new BigDecimal("49.9"), "USD", "Must-have item.", boots, hotStuff));
+        productDataStore.add(new Product("Audio cassette", new BigDecimal("1.9"), "USD", "Brings you the music", other, hotStuff));
         productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985.0"), "USD", "Takes you back to the future.", other, flux));
 
 
