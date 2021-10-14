@@ -19,8 +19,8 @@ export function htmlFactory(item) {
                     <div class="card-text">
                         <p class="lead">${item.defaultPrice} $</p>
                     </div>
-                    <div class="card-btn">
-                        <a class="btn btn-success" id="${item.id}" >Add to cart</a>
+                    <div class="card-btn" id="${item.id}">
+                        <a class="btn btn-success">Add to cart</a>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 export function putProductToShoppingCart() {
 
     let putCartButton = document.querySelectorAll(".card-btn")
-
+    console.log(putCartButton)
     for (let successButton of putCartButton) {
         successButton.addEventListener("click", () => {
             let url = `/shoppingcartadd?id=${successButton.id}`;
