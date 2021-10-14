@@ -23,7 +23,7 @@ export function init() {
 }
 
 function htmlFactory(item) {
-    console.log(item.name);
+    const category = (item.name);
     return `
         <div class="col col-sm-12 col-md-6 col-lg-4">
             <div class="card" id="${item.name}">

@@ -28,7 +28,7 @@ function htmlFactory(item) {
                 </div>
                 <div class="card-body">
                     <div class="card-btn">
-                        <a class="btn btn-success" id="see-all-product" data-department="${item.name}" >See products</a>
+                        <a class="btn btn-success" id="see-all-product" data-category="${item.name}" >See products</a>
                     </div>
                 </div>
             </div>
