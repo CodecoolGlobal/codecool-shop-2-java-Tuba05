@@ -2,10 +2,12 @@ package com.codecool.shop.dao.implementation;
 
 
 import com.codecool.shop.dao.ProductCategoryDao;
+import com.codecool.shop.model.Department;
 import com.codecool.shop.model.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductCategoryDaoMem implements ProductCategoryDao {
 
@@ -33,6 +35,11 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
     @Override
     public ProductCategory find(int id) {
         return data.stream().filter(t -> t.getId() == id).findFirst().orElse(null);
+    }
+
+    @Override
+    public List <ProductCategory> find(String department) {
+        return data.stream().filter(t -> t.getDepartment().getName().equals(department)).collect(Collectors.toList());
     }
 
     @Override

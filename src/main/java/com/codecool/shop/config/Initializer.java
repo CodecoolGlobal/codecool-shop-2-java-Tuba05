@@ -49,10 +49,12 @@ public class Initializer implements ServletContextListener {
 
         //setting up a new product category
 
-        ProductCategory glasses = new ProductCategory("Glasses", "Accessories", "Glasses for everyone.");
-        ProductCategory jewelery = new ProductCategory("Jewellery", "Accessories", "Bling-bling.");
-        ProductCategory other = new ProductCategory("Other", "Accessories", "Everything else.");
+        ProductCategory glasses = new ProductCategory("Glasses", new Department("Accessories"), "Glasses for everyone.");
+        ProductCategory jewelery = new ProductCategory("Jewellery",  new Department("Accessories"), "Bling-bling.");
+        ProductCategory other = new ProductCategory("Other",  new Department("Accessories"), "Everything else.");
         productCategoryDataStore.add(glasses);
+        productCategoryDataStore.add(jewelery);
+        productCategoryDataStore.add(other);
 
         //setting up products and printing it
         productDataStore.add(new Product("Striped sunglasses", new BigDecimal("2.9"), "USD", "Super trendy party glasses.", glasses, hotStuff));

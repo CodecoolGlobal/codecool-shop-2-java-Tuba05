@@ -27,7 +27,9 @@ public class AllProductCategoryServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        List<ProductCategory> categories = productCategoryDao.getAll();
+        String department = request.getParameter("department");
+        System.out.println(department);
+        List<ProductCategory> categories = productCategoryDao.find(department);
         Gson gson = new Gson();
         System.out.println(gson.toJson(categories));
         PrintWriter out = response.getWriter();
