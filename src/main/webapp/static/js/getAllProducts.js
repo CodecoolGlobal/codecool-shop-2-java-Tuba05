@@ -1,8 +1,7 @@
-function getAllProducts() {
+export function getAllProducts() {
     fetch(`/api/get_all_products`)
         .then(response => response.json())
         .then(data => {
-            // console.log(data);
             cardFactory(data);
         })
 }
@@ -36,7 +35,3 @@ function htmlFactory(item) {
             </div>
     `
 }
-
-export { getAllProducts, cardFactory, htmlFactory };
-//init()
-
