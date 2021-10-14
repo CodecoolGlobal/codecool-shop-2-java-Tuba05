@@ -1,4 +1,5 @@
 import {cardFactory} from "./productFactory.js";
+import { putProductToShoppingCart } from './shoppingCart.js';
 
 export function getAllProductsByCategory(category) {
     fetch(`/api/get_all_product_by_category?category=${category}`)
@@ -6,5 +7,7 @@ export function getAllProductsByCategory(category) {
         .then(data => {
            // console.log(data);
             cardFactory(data);
+            putProductToShoppingCart()
+
         })
 }

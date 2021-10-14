@@ -1,17 +1,18 @@
 import {getAllCategory} from "/static/js/getAllCategoryByDepartment.js";
 const forCards = document.querySelector("#products");
 
- window.onload = (event) => {
-    init();
-    setTimeout(addEventListenerToButtonn, 200);
- }
+ // window.onload = (event) => {
+ //    init();
+
+ // }
 
 export function init() {
     fetch(`/api/get_all_department`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             cardFactory(data);
+            setTimeout(addEventListenerToButtonn, 200);
         })
 }
 
