@@ -28,7 +28,7 @@ public class GetAllProductBySupplierServlet extends HttpServlet {
 
         String supplier = request.getParameter("supplier");
 
-        List<Product> productList = productDao.getBy(supplier);
+        List<Product> productList = productDao.getBySupplier(supplier);
         Gson gson = new Gson();
         System.out.println(gson.toJson(productList));
         PrintWriter out = response.getWriter();
