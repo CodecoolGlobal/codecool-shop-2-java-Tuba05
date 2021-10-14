@@ -3,7 +3,7 @@ const forCards = document.querySelector("#products");
 
  window.onload = (event) => {
     init();
-    setTimeout(addEventListenerToButton, 200);
+    setTimeout(addEventListenerToButtonn, 200);
  }
 
 export function init() {
@@ -41,13 +41,14 @@ function htmlFactory(item) {
     `
 }
 
-function addEventListenerToButton() {
+function addEventListenerToButtonn() {
     const seeAllButtons = document.querySelectorAll("#see-all");
     console.log(seeAllButtons);
     seeAllButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log("clicked");
-            getAllCategory()
+            let department = button.dataset.department;
+            getAllCategory(department)
         })
     })
 }
