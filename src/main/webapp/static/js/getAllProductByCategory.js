@@ -6,7 +6,7 @@ export function getAllProductsByCategory(category) {
         .then(response => response.json())
         .then(data => {
            // console.log(data);
-            cardFactory(data);
+            cardFactory(data, category);
             putProductToShoppingCart()
 
         })
