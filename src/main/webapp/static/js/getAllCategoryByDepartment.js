@@ -1,12 +1,14 @@
-import {getAllProducts} from "./getAllProducts.js";
+import {getAllProductsByCategory} from "./getAllProductByCategory.js";
+
 const forCards = document.querySelector("#products");
 
-export function getAllCategory() {
-    fetch(`/api/get_all_category?department=Accessories`)
+export function getAllCategory(department) {
+    fetch(`/api/get_all_category?department=${department}`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
             cardFactory(data);
+            addEventListenerToButton();
         })
 }
 
@@ -28,24 +30,26 @@ function htmlFactory(item) {
                 </div>
                 <div class="card-body">
                     <div class="card-btn">
-                        <a class="btn btn-success" id="see-all-product" data-category="${item.name}" >See products</a>
+                        <a class="btn btn-success see-all-product" data-category="${item.name}" >See products</a>
                     </div>
                 </div>
             </div>
-            </div>
-    `
+            </div>`
+
 }
 
 function addEventListenerToButton() {
-    const seeAllButtons = document.querySelectorAll("#see-all-product");
+    const seeAllButtons = document.querySelectorAll(".see-all-product");
     console.log(seeAllButtons);
+
     seeAllButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log("clicked");
-            getAllProducts()
+            let category = button.dataset.category;
+            console.log(button);
+            console.log(category)
+            getAllProductsByCategory(category)
         })
     })
 }
 
-getAllCategory();
-setTimeout(addEventListenerToButton, 200);
