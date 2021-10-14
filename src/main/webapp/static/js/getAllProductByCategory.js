@@ -1,6 +1,6 @@
 import {cardFactory} from "./productFactory.js";
 
-export function init(category) {
+export function getAllProductsByCategory(category) {
     fetch(`/api/get_all_product_by_category?category=${category}`)
         .then(response => response.json())
         .then(data => {
@@ -8,5 +8,3 @@ export function init(category) {
             cardFactory(data);
         })
 }
-
-init();
