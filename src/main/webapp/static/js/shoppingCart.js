@@ -12,8 +12,8 @@ export function putProductToShoppingCart() {
 }
 
 function shoppingCartContentCreator(data){
-    let counter = 0;
-    counter++;
+    let counter = 1;
+    // counter++;
     productInCartCounter(counter);
     let contentField = document.getElementById("cart-content");
     contentField.innerHTML +=
@@ -27,7 +27,7 @@ function shoppingCartContentCreator(data){
                     </div>
                 </div>
             </td>
-            <td> ${data.defaultPrice} </td>
+            <td> ${data.defaultPrice} '$'</td>
             <td data-th="Quantity">
                 <input type="number" class="form-control text-center" value="1">
             </td>
@@ -50,7 +50,13 @@ function productFetch(url){
 function productInCartCounter(number){
     let counter = document.getElementById("productnumber");
     let currentNumber = parseInt(counter.innerText);
-    counter.innerHTML = (currentNumber + number);
+
+    if(number>0){
+        counter.innerHTML = (currentNumber + number);
+    }
+    if(number<0){
+        counter.innerHTML = (currentNumber + number);
+    }
 
 }
 
@@ -61,6 +67,7 @@ export function deleteProductFromCart(){
             deleteButton.parentElement.parentElement.remove();
             let url = `/shoppingcartdelete?id=${deleteButton.parentElement.id}`;
             productFetch(url);
+            productInCartCounter(-1);
         })
     }
 }
