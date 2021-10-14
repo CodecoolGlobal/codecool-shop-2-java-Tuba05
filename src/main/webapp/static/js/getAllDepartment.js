@@ -1,11 +1,12 @@
-// import {getAllProducts, cardFactory, htmlFactory} from "./getAllProducts";
+import {getAllProducts} from "/static/js/getAllProducts.js";
+const forCards = document.querySelector("#products");
 
-window.onload = (event) => {
+ window.onload = (event) => {
     init();
     setTimeout(addEventListenerToButton, 200);
-}
+ }
 
-function init() {
+export function init() {
     fetch(`/api/get_all_department`)
         .then(response => response.json())
         .then(data => {
@@ -14,8 +15,7 @@ function init() {
         })
 }
 
-function cardFactory(data) {
-    const forCards = document.querySelector("#products");
+ function cardFactory(data) {
     forCards.innerHTML = "";
     data.forEach(item => {
         forCards.innerHTML += htmlFactory(item);
@@ -47,8 +47,8 @@ function addEventListenerToButton() {
     seeAllButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log("clicked");
-
-            // getAllProducts();
+            getAllProducts()
         })
     })
 }
+
