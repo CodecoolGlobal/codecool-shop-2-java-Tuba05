@@ -1,16 +1,16 @@
-export function cardFactory(data) {
+export function cardFactory(data, category) {
     const forCards = document.querySelector("#products");
     forCards.innerHTML = "";
     data.forEach(item => {
-        forCards.innerHTML += htmlFactory(item);
+        forCards.innerHTML += htmlFactory(item, category);
     })
 }
 
-export function htmlFactory(item) {
+function htmlFactory(item, category) {
     return `
         <div class="col col-sm-12 col-md-6 col-lg-4">
             <div class="card" id="${item.id}">
-                <img class="" src="/static/img/product_${item.id}.jpg"/>
+                <img class="" src="/static/img/${category}/${item.name}.jpg"/>
                 <div class="card-header">
                     <h4 class="card-title">${item.name}</h4>
                     <p class="card-text">${item.description}</p>
