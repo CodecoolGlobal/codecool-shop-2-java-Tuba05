@@ -1,13 +1,8 @@
-import {getAllCategory} from "/static/js/getAllCategoryByDepartment.js";
+import {getAllProducts} from "./getAllProducts.js";
 const forCards = document.querySelector("#products");
 
- window.onload = (event) => {
-    init();
-    setTimeout(addEventListenerToButton, 200);
- }
-
-export function init() {
-    fetch(`/api/get_all_department`)
+export function getAllCategory() {
+    fetch(`/api/get_all_category?department=Accessories`)
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -15,7 +10,7 @@ export function init() {
         })
 }
 
- function cardFactory(data) {
+function cardFactory(data) {
     forCards.innerHTML = "";
     data.forEach(item => {
         forCards.innerHTML += htmlFactory(item);
@@ -27,13 +22,13 @@ function htmlFactory(item) {
     return `
         <div class="col col-sm-12 col-md-6 col-lg-4">
             <div class="card" id="${item.name}">
-                <img class="" src="/static/img/department/${item.name}.jpg"/>
+                <img class="" src="/static/img/${item.name}.jpg"/>
                 <div class="card-header">
                     <h4 class="card-title">${item.name}</h4>
                 </div>
                 <div class="card-body">
                     <div class="card-btn">
-                        <a class="btn btn-success" id="see-all" data-department="${item.name}" >See all</a>
+                        <a class="btn btn-success" id="see-all-product" data-department="${item.name}" >See products</a>
                     </div>
                 </div>
             </div>
@@ -42,13 +37,15 @@ function htmlFactory(item) {
 }
 
 function addEventListenerToButton() {
-    const seeAllButtons = document.querySelectorAll("#see-all");
+    const seeAllButtons = document.querySelectorAll("#see-all-product");
     console.log(seeAllButtons);
     seeAllButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log("clicked");
-            getAllCategory()
+            getAllProducts()
         })
     })
 }
 
+getAllCategory();
+setTimeout(addEventListenerToButton, 200);
