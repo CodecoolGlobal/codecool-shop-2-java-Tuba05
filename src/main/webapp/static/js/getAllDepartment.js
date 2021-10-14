@@ -27,7 +27,7 @@ function htmlFactory(item) {
     return `
         <div class="col col-sm-12 col-md-6 col-lg-4">
             <div class="card" id="${item.name}">
-                <img class="" src="/static/img/department/${item.name}.jpg"/>
+                <img class="" style="width:100%;height:300px;" src="/static/img/department/${item.name}.jpg"/>
                 <div class="card-header">
                     <h4 class="card-title">${item.name}</h4>
                 </div>
