@@ -3,8 +3,16 @@ function init() {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            //cardFactory(data);
+            cardFactory(data);
         })
+}
+
+function cardFactory(data) {
+    const forCards = document.querySelector("#products");
+    forCards.innerHTML = "";
+    data.forEach(item => {
+        forCards.innerHTML += htmlFactory(item);
+    })
 }
 
 init();
