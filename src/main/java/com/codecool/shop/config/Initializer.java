@@ -52,9 +52,23 @@ public class Initializer implements ServletContextListener {
         ProductCategory glasses = new ProductCategory("Glasses", new Department("Accessories"), "Glasses for everyone.");
         ProductCategory jewelery = new ProductCategory("Jewellery",  new Department("Accessories"), "Bling-bling.");
         ProductCategory other = new ProductCategory("Other",  new Department("Accessories"), "Everything else.");
+
+        ProductCategory coat = new ProductCategory("Coat",  new Department("Clothes"), "Fashionable items.");
+        ProductCategory tShirt = new ProductCategory("T-shirt",  new Department("Clothes"), "Everything starts here.");
+        ProductCategory denim = new ProductCategory("Denim",  new Department("Clothes"), "Items for every occasion.");
+
+        ProductCategory heels = new ProductCategory("Heels",  new Department("Shoes"), "Items for every occasion.");
+        ProductCategory sneakers = new ProductCategory("Sneakers",  new Department("Shoes"), "Everything starts here..");
+        ProductCategory boots = new ProductCategory("Boots",  new Department("Shoes"), "Fashionable items.");
         productCategoryDataStore.add(glasses);
         productCategoryDataStore.add(jewelery);
         productCategoryDataStore.add(other);
+        productCategoryDataStore.add(coat);
+        productCategoryDataStore.add(tShirt);
+        productCategoryDataStore.add(denim);
+        productCategoryDataStore.add(heels);
+        productCategoryDataStore.add(sneakers);
+        productCategoryDataStore.add(boots);
 
         //setting up products and printing it
         productDataStore.add(new Product("Striped sunglasses", new BigDecimal("2.9"), "USD", "Super trendy party glasses.", glasses, hotStuff));
