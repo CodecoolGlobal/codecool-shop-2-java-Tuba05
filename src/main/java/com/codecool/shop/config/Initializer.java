@@ -71,13 +71,20 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(boots);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Striped sunglasses", new BigDecimal("2.9"), "USD", "Super trendy party glasses.", glasses, hotStuff));
-        productDataStore.add(new Product("Break sunglasses", new BigDecimal("4.9"), "USD", "Must-have party accessory.", glasses, hotStuff));
-        productDataStore.add(new Product("Sophia Loren glasses", new BigDecimal("19.9"), "USD", "Classy glasses.", glasses, flash));
-        productDataStore.add(new Product("Earrings", new BigDecimal("9.9"), "USD", "Neon earrings.", jewelery, flash));
-        productDataStore.add(new Product("Bracelet", new BigDecimal("5.9"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
-        productDataStore.add(new Product("Scrunchie", new BigDecimal("0.9"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
-        productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985.0"), "USD", "Takes you back to the future.", other, flux));
+        productDataStore.add(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
+        productDataStore.add(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
+        productDataStore.add(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
+        productDataStore.add(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
+        productDataStore.add(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
+        productDataStore.add(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
+        productDataStore.add(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
+        productDataStore.add(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
+        productDataStore.add(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
+        productDataStore.add(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
+        productDataStore.add(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
+        productDataStore.add(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
+        productDataStore.add(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
+        productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
 
 
         departmentDataStore.add(accessories);
