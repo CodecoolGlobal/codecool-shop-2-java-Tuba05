@@ -25,16 +25,17 @@ function shoppingCartContentCreator(data){
                 </div>
             </td>
             <td id="current-price${data.id}" class="price">${data.defaultPrice}</td>
-<!--            <td data-th="Quantity" id="quantity">-->
-<!--                <input id="quantity-changer" type="number" class="form-control text-center" value="1">-->
-<!--            </td>-->
-<!--            <td><a id="all-price${data.id}">${data.defaultPrice}</a><a> $</a></td>-->
+            <td data-th="Quantity" id="quantity">
+                <input id="quantity-changer" type="number" class="form-control text-center" value="1">
+            </td>
+           <td><a id="all-price${data.id}">${data.defaultPrice}</a></td>
             <td id="${data.id}" class="actions" data-th="" style="width:10%;">
                 <button id="delete-button" class="btn btn-danger btn-sm" type="submit"><i class="fa fa-trash-o"></i></button>
             </td>
         </tr>`
     deleteProductFromCart()
     amountCounter()
+    // checkOut()
 }
 
 function productFetch(url){
@@ -94,4 +95,18 @@ function amountCounter(){
         //     let actuelPrice = (currentPrice * currentAmount);
         //     currentField.innerHTML = `${actuelPrice}`;
         // })
+}
+
+export function checkOut(){
+    let checkOutButton = document.getElementById("check-out");
+    let cartContent = document.getElementById("cart-content");
+    let cartAmountConter = document.getElementById("productnumber");
+    let totalPriceInCartVisual = document.getElementById("total-price");
+    checkOutButton.addEventListener("click", ()=>{
+        cartContent.innerHTML = "";
+        cartAmountConter.innerHTML = 0;
+        totalPriceInCartVisual.innerHTML = `Total: 0 $`;
+        alert("Thank you for your buying!!");
+
+    })
 }
