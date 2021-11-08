@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCategory extends BaseModel {
-    private String department;
-    private List<Product> products;
+    private Department department;
+    private transient List<Product> products;
 
-    public ProductCategory(String name, String department, String description) {
+    public ProductCategory(String name, Department department, String description) {
         super(name);
         this.department = department;
         this.products = new ArrayList<>();
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
