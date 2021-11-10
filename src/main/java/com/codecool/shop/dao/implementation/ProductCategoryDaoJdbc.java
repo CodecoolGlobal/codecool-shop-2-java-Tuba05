@@ -24,7 +24,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
             String sql = "INSERT INTO ProductCategories (name, department, description) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, category.getName());
-            statement.setString(2, category.getDepartment().toString());
+            statement.setString(2, category.getDepartment().getName());
             statement.setString(3, category.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {

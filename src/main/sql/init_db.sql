@@ -9,9 +9,8 @@ create table "Products"
             primary key,
     name text,
     price int,
-    currency text,
     description text,
-    type text,
+    category text,
     supplier text
 );
 
