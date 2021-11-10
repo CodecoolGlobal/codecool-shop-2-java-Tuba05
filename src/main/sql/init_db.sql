@@ -1,4 +1,4 @@
-create database codecool-shop;
+create database codecool_shop;
 
 create schema schema_name;
 

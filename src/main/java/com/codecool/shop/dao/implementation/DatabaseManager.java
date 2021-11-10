@@ -16,8 +16,8 @@ public class DatabaseManager {
 
     public void setup() throws SQLException {
         DataSource dataSource = connect();
-        departmentDao = new DepartmentDao(dataSource);
-        gameStateDao = new GameStateDaoJdbc(dataSource, playerDao);
+//        departmentDao = new DepartmentDao(dataSource);
+//        productDao = new GameStateDaoJdbc(dataSource, playerDao);
     }
 
     private DataSource connect() throws SQLException {
