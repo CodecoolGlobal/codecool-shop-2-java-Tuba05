@@ -23,6 +23,7 @@
                 <a href="#" class="category-button">Sneakers</a>
                 <a href="#" class="category-button">Boots</a>
             </div>
+
         </div>
 
         <div class="dropdown-class">
@@ -34,7 +35,9 @@
                 <a href="#" class="category-button">Jewelery</a>
                 <a href="#" class="category-button">Other</a>
             </div>
+
         </div>
+            <span class="username" th:if="${ session.uname != null}" th:text="'Logged in as '+ ${session.uname}"></span>
         <!--Large modal-->
         <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i
                 class="fa fa-shopping-cart"></i> Cart

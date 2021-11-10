@@ -290,6 +290,16 @@ button:hover,
     margin-top: 5px;
 }
 
+.username {
+
+    background-color: #000;
+    color: white; !important;
+    height: 50px;
+
+}
+
+
+
 /* Center the avatar image inside this container */
 .imgcontainer {
     text-align: center;
