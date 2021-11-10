@@ -49,8 +49,9 @@
   <img src="static/img/login.jpg" alt="Avatar" class="avatar">
 </div>
 <div class="container">
-  profile
-  <span th:text="${session.uname}"></span>
+  <h4 style="text-align: center"
+  th:text="${session.uname}">
+  </h4>
 </div>
 
 <div th:replace="footer.html :: copy"></div>
