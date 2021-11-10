@@ -23,13 +23,13 @@ public class ProductDaoJdbc implements ProductDao {
     @Override
     public void add(Product product) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO Products (name, price, description, category, supplier) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO products (name, price, description, category, supplier) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
-            statement.setString(2, product.getPrice());
+            statement.setBigDecimal(2, product.getPrice());
             statement.setString(3, product.getDescription());
             statement.setString(4, product.getProductCategory().getName());
-            statement.setString(2, product.getSupplier().getName());
+            statement.setString(5, product.getSupplier().getName());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
