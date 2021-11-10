@@ -24,6 +24,7 @@ loginButton.addEventListener('click', event => {
     }
 )
 
+
 categories.forEach(category => {
     category.addEventListener('click', () => {
         getAllProductsByCategory(category.innerHTML);
