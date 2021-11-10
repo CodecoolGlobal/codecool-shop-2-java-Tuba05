@@ -37,7 +37,16 @@
             </div>
 
         </div>
-            <span class="username" th:if="${ session.uname != null}" th:text="'Logged in as '+ ${session.uname}"></span>
+        <div th:if="${ session.uname != null}"class="dropdown-class">
+            <button class="dropdown-button department-button" data-name="User" th:text=" ${session.uname}">
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-list">
+                <a href="#" class="category-button">Profile</a>
+                <a href="#" class="category-button">Wishlist</a>
+                <a href="#" class="category-button">Logout</a>
+            </div>
+        </div>
         <!--Large modal-->
         <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i
                 class="fa fa-shopping-cart"></i> Cart
