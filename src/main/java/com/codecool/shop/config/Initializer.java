@@ -19,12 +19,18 @@ import java.sql.SQLException;
 @WebListener
 public class Initializer implements ServletContextListener {
 
+    public boolean daoTypeIsSql;
+
+
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         DepartmentDao departmentDataStore = DepartmentDaoMem.getInstance();
+        SetUpMemOrSql setUpMemOrSql = new SetUpMemOrSql();
+
         DatabaseManager databaseManager = null;
         try {
             databaseManager = new DatabaseManager();
@@ -32,20 +38,28 @@ public class Initializer implements ServletContextListener {
             e.printStackTrace();
         }
 
+        //Check connection.properties
+        this.daoTypeIsSql = setUpMemOrSql.readResource();
 
         //setting up a new supplier
         Supplier hotStuff = new Supplier("HotStuff", "Glasses");
-        supplierDataStore.add(hotStuff);
         Supplier flash = new Supplier("Flash", "Jewellery");
-        supplierDataStore.add(flash);
         Supplier flux = new Supplier("FluxMax", "Fluxus");
-        supplierDataStore.add(flux);
+
+        //Save to Mem
+        if (!daoTypeIsSql){
+            supplierDataStore.add(hotStuff);
+            supplierDataStore.add(flash);
+            supplierDataStore.add(flux);
+        }
 
         // Save to SqlDataBase
-        if(databaseManager.getAllSupplier().size()==0){
-            databaseManager.saveSupplier(hotStuff);
-            databaseManager.saveSupplier(flash);
-            databaseManager.saveSupplier(flux);
+        if(daoTypeIsSql){
+            if(databaseManager.getAllSupplier().size()==0){
+                databaseManager.saveSupplier(hotStuff);
+                databaseManager.saveSupplier(flash);
+                databaseManager.saveSupplier(flux);
+            }
         }
 
 
@@ -71,64 +85,73 @@ public class Initializer implements ServletContextListener {
         ProductCategory boots = new ProductCategory("Boots",  new Department("Shoes"), "Fashionable items.");
 
         // Save to Mem
-        productCategoryDataStore.add(glasses);
-        productCategoryDataStore.add(jewelery);
-        productCategoryDataStore.add(other);
-        productCategoryDataStore.add(coat);
-        productCategoryDataStore.add(tShirt);
-        productCategoryDataStore.add(denim);
-        productCategoryDataStore.add(heels);
-        productCategoryDataStore.add(sneakers);
-        productCategoryDataStore.add(boots);
+        if(!daoTypeIsSql){
+            productCategoryDataStore.add(glasses);
+            productCategoryDataStore.add(jewelery);
+            productCategoryDataStore.add(other);
+            productCategoryDataStore.add(coat);
+            productCategoryDataStore.add(tShirt);
+            productCategoryDataStore.add(denim);
+            productCategoryDataStore.add(heels);
+            productCategoryDataStore.add(sneakers);
+            productCategoryDataStore.add(boots);
+        }
 
         // Save to SqlDataBase
-        if(databaseManager.getAllProductCategory().size()==0) {
-            databaseManager.saveProductCategory(glasses);
-            databaseManager.saveProductCategory(jewelery);
-            databaseManager.saveProductCategory(other);
-            databaseManager.saveProductCategory(coat);
-            databaseManager.saveProductCategory(tShirt);
-            databaseManager.saveProductCategory(denim);
-            databaseManager.saveProductCategory(heels);
-            databaseManager.saveProductCategory(sneakers);
-            databaseManager.saveProductCategory(boots);
+        if (daoTypeIsSql){
+            if(databaseManager.getAllProductCategory().size()==0) {
+                databaseManager.saveProductCategory(glasses);
+                databaseManager.saveProductCategory(jewelery);
+                databaseManager.saveProductCategory(other);
+                databaseManager.saveProductCategory(coat);
+                databaseManager.saveProductCategory(tShirt);
+                databaseManager.saveProductCategory(denim);
+                databaseManager.saveProductCategory(heels);
+                databaseManager.saveProductCategory(sneakers);
+                databaseManager.saveProductCategory(boots);
+            }
         }
 
-        //setting up products and printing it
-        productDataStore.add(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
-        productDataStore.add(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
-        productDataStore.add(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
-        productDataStore.add(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
-        productDataStore.add(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
-        productDataStore.add(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
-        productDataStore.add(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
-        productDataStore.add(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
-        productDataStore.add(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
-        productDataStore.add(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
-        productDataStore.add(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
-        productDataStore.add(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
-        productDataStore.add(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
-        productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
-
-        if(databaseManager.getAllProducts().size()==0) {
-            databaseManager.saveProduct(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
-            databaseManager.saveProduct(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
-            databaseManager.saveProduct(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
-            databaseManager.saveProduct(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
-            databaseManager.saveProduct(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
-            databaseManager.saveProduct(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
-            databaseManager.saveProduct(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
-            databaseManager.saveProduct(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
-            databaseManager.saveProduct(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
-            databaseManager.saveProduct(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
-            databaseManager.saveProduct(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
-            databaseManager.saveProduct(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
-            databaseManager.saveProduct(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
-            databaseManager.saveProduct(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
+        //Sava to Mem
+        if (!daoTypeIsSql){
+            productDataStore.add(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
+            productDataStore.add(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
+            productDataStore.add(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
+            productDataStore.add(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
+            productDataStore.add(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
+            productDataStore.add(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
+            productDataStore.add(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
+            productDataStore.add(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
+            productDataStore.add(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
+            productDataStore.add(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
+            productDataStore.add(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
+            productDataStore.add(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
+            productDataStore.add(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
+            productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
+            departmentDataStore.add(accessories);
+            departmentDataStore.add(clothes);
+            departmentDataStore.add(shoes);
         }
 
-        departmentDataStore.add(accessories);
-        departmentDataStore.add(clothes);
-        departmentDataStore.add(shoes);
+        //Save to Sql
+        if (daoTypeIsSql){
+            if(databaseManager.getAllProducts().size()==0) {
+                databaseManager.saveProduct(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
+                databaseManager.saveProduct(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
+                databaseManager.saveProduct(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
+                databaseManager.saveProduct(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
+                databaseManager.saveProduct(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
+                databaseManager.saveProduct(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
+                databaseManager.saveProduct(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
+                databaseManager.saveProduct(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
+                databaseManager.saveProduct(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
+                databaseManager.saveProduct(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
+                databaseManager.saveProduct(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
+                databaseManager.saveProduct(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
+                databaseManager.saveProduct(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
+                databaseManager.saveProduct(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
+            }
+        }
+
     }
 }

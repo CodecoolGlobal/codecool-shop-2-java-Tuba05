@@ -1,0 +1,33 @@
+package com.codecool.shop.dao;
+
+import com.codecool.shop.config.Initializer;
+
+import java.io.FileReader;
+import java.util.Objects;
+import java.util.Properties;
+
+public class SetUpMemOrSql {
+
+    public boolean readResource() {
+        try {
+            Properties props = new Properties();
+            String dbSettingsPropertyFile = "src/main/resources/connection.properties";
+            FileReader fReader = new FileReader(dbSettingsPropertyFile);
+            props.load(fReader);
+            String dbKeyWord = props.getProperty("db.dao");
+
+            if (Objects.equals(dbKeyWord, "jdbc")) {
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+}
+
