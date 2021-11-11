@@ -4,8 +4,8 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.*;
+import com.codecool.shop.model.Department;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -120,6 +120,23 @@ public class DatabaseManager {
     }
     public void removeSupplier(int id){
         supplierDao.remove(id);
+    }
+
+
+    // Department
+
+    public void saveDepartment(Department department){
+        departmentDao.add(department);
+    }
+    public Department find(int id){
+        return departmentDao.find(id);
+    }
+    public void remove(int id){
+        departmentDao.remove(id);
+    }
+
+    public List<Department> getAllDepartment(){
+        return departmentDao.getAll();
     }
 
     private DataSource connect() throws SQLException {
