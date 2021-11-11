@@ -61,7 +61,7 @@ public class DatabaseManager {
         productCategoryDao.add(productCategory);
     }
 
-    //Get Products
+    // Products
 
     public List<Product> getAllProducts(){
         return productDao.getAll();
@@ -83,6 +83,21 @@ public class DatabaseManager {
         return productDao.getBy(productCategory);
     }
 
+    public void removeProduct(int id){
+        productDao.remove(id);
+    }
+
+    public Product findProductById(int id){
+        return productDao.find(id);
+    }
+
+
+    // ProductCategorys
+
+    public List <ProductCategory> findProductCategoryByDepartment(String department){
+        return productCategoryDao.find(department);
+    }
+
     public ProductCategory findProductCategoryById(int id){
         return productCategoryDao.find(id);
     }
@@ -91,12 +106,6 @@ public class DatabaseManager {
         return productCategoryDao.findByName(name);
     }
 
-
-    //Get ProductCategorys
-
-    public List <ProductCategory> findProductCategoryByDepartment(String department){
-        return productCategoryDao.find(department);
-    }
     public void removeProductCategory(int id){
         productCategoryDao.remove(id);
     }
@@ -106,10 +115,20 @@ public class DatabaseManager {
     }
 
 
-    //Get Suppliers
+    // Suppliers
 
     public List<Supplier> getAllSupplier(){
         return supplierDao.getAll();
+    }
+
+    public Supplier findSupplierById(int id){
+        return supplierDao.find(id);
+    }
+    public Supplier findSupplierByIdName(String name){
+        return supplierDao.find(name);
+    }
+    public void removeSupplier(int id){
+        supplierDao.remove(id);
     }
 
     private DataSource connect() throws SQLException {
