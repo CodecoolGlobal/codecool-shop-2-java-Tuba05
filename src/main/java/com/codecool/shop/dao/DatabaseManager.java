@@ -71,6 +71,20 @@ public class DatabaseManager {
         return supplierDao.getAll();
     }
 
+    public List<Product> getProductsBySupplier(Supplier supplier){
+        return productDao.getBy(supplier);
+    };
+
+    public List<Product> getProductsBySupplier(String supplier){
+        return productDao.getBySupplier(supplier);
+    };
+    public List<Product> getProductsByProductCategory(ProductCategory productCategory){
+        return productDao.getBy(productCategory);
+    };
+    public List<Product> getProductsByProductCategory(String productCategory){
+        return productDao.getBy(productCategory);
+    };
+
     private DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         String dbName = System.getenv("databaseName");
