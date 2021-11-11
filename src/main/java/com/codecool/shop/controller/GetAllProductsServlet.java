@@ -41,7 +41,7 @@ public class GetAllProductsServlet extends HttpServlet {
         if(daoTypeIsSql){productList=databaseManager.getAllProducts();}
         else {productList=productDao.getAll();}
         Gson gson = new Gson();
-        System.out.println(gson.toJson(productList));
+
         PrintWriter out = response.getWriter();
         out.println(gson.toJson(productList));
     }
