@@ -1,14 +1,9 @@
 package com.codecool.shop.config;
 
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.ShoppingCartDao;
-import com.codecool.shop.dao.SupplierDao;
-import com.codecool.shop.dao.DepartmentDao;
+import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.DepartmentDaoMem;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
-import com.codecool.shop.dao.implementation.ShoppingCartDaoMem;
 import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Department;
 import com.codecool.shop.model.Product;
@@ -19,6 +14,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 
 @WebListener
 public class Initializer implements ServletContextListener {
@@ -29,6 +25,12 @@ public class Initializer implements ServletContextListener {
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         DepartmentDao departmentDataStore = DepartmentDaoMem.getInstance();
+        DatabaseManager databaseManager = null;
+        try {
+            databaseManager = new DatabaseManager();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
 
         //setting up a new supplier
@@ -38,6 +40,13 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(flash);
         Supplier flux = new Supplier("FluxMax", "Fluxus");
         supplierDataStore.add(flux);
+
+        // Save to SqlDataBase
+        if(databaseManager.getAllSupplier().size()==0){
+            databaseManager.saveSupplier(hotStuff);
+            databaseManager.saveSupplier(flash);
+            databaseManager.saveSupplier(flux);
+        }
 
 
 
@@ -60,6 +69,8 @@ public class Initializer implements ServletContextListener {
         ProductCategory heels = new ProductCategory("Heels",  new Department("Shoes"), "Items for every occasion.");
         ProductCategory sneakers = new ProductCategory("Sneakers",  new Department("Shoes"), "Everything starts here..");
         ProductCategory boots = new ProductCategory("Boots",  new Department("Shoes"), "Fashionable items.");
+
+        // Save to Mem
         productCategoryDataStore.add(glasses);
         productCategoryDataStore.add(jewelery);
         productCategoryDataStore.add(other);
@@ -69,6 +80,19 @@ public class Initializer implements ServletContextListener {
         productCategoryDataStore.add(heels);
         productCategoryDataStore.add(sneakers);
         productCategoryDataStore.add(boots);
+
+        // Save to SqlDataBase
+        if(databaseManager.getAllProductCategory().size()==0) {
+            databaseManager.saveProductCategory(glasses);
+            databaseManager.saveProductCategory(jewelery);
+            databaseManager.saveProductCategory(other);
+            databaseManager.saveProductCategory(coat);
+            databaseManager.saveProductCategory(tShirt);
+            databaseManager.saveProductCategory(denim);
+            databaseManager.saveProductCategory(heels);
+            databaseManager.saveProductCategory(sneakers);
+            databaseManager.saveProductCategory(boots);
+        }
 
         //setting up products and printing it
         productDataStore.add(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
@@ -86,6 +110,22 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
         productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
 
+        if(databaseManager.getAllProducts().size()==0) {
+            databaseManager.saveProduct(new Product("Striped sunglasses", new BigDecimal("3"), "USD", "Super trendy party glasses.", glasses, hotStuff));
+            databaseManager.saveProduct(new Product("Break sunglasses", new BigDecimal("5"), "USD", "Must-have party accessory.", glasses, hotStuff));
+            databaseManager.saveProduct(new Product("Sophia Loren glasses", new BigDecimal("20"), "USD", "Classy glasses.", glasses, flash));
+            databaseManager.saveProduct(new Product("Earrings", new BigDecimal("10"), "USD", "Neon earrings.", jewelery, flash));
+            databaseManager.saveProduct(new Product("Bracelet", new BigDecimal("6"), "USD", "Bracelet with animal printing.", jewelery, hotStuff));
+            databaseManager.saveProduct(new Product("Scrunchie", new BigDecimal("1"), "USD", "Colorful scrunchies.", jewelery, hotStuff));
+            databaseManager.saveProduct(new Product("Multicolor heels", new BigDecimal("30"), "USD", "Must-have item.", heels, hotStuff));
+            databaseManager.saveProduct(new Product("Rainbow heels", new BigDecimal("30"), "USD", "Party Queen heels.", heels, hotStuff));
+            databaseManager.saveProduct(new Product("Classic Nike", new BigDecimal("100"), "USD", "Must-have item.", sneakers, flash));
+            databaseManager.saveProduct(new Product("Reebok", new BigDecimal("70"), "USD", "Iconic sneakers.", sneakers, hotStuff));
+            databaseManager.saveProduct(new Product("Red boot", new BigDecimal("40"), "USD", "Keeps you warm.", boots, flash));
+            databaseManager.saveProduct(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
+            databaseManager.saveProduct(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
+            databaseManager.saveProduct(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
+        }
 
         departmentDataStore.add(accessories);
         departmentDataStore.add(clothes);

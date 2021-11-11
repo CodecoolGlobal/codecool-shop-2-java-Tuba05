@@ -1,7 +1,5 @@
 package com.codecool.shop.model;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
 import java.util.Currency;
 
@@ -38,8 +36,8 @@ public class Product extends BaseModel {
         this.defaultCurrency = defaultCurrency;
     }
 
-    public String getPrice() {
-        return String.valueOf(this.defaultPrice) + " " + this.defaultCurrency.toString();
+    public BigDecimal getPrice() {
+        return this.defaultPrice;
     }
 
     public void setPrice(BigDecimal price, String currency) {

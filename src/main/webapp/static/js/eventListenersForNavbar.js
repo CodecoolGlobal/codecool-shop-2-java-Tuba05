@@ -16,8 +16,19 @@ querySelectors.departments.forEach(department => {
     });
 })
 
+
 querySelectors.homeButton.addEventListener('click', () => {
         getAllDepartment.init();
+  
+
+homeButton.addEventListener('click', event => {
+        init();
+
+    }
+)
+
+loginButton.addEventListener('click', event => {
+    modal.style.display = "block";
     }
 )
 
