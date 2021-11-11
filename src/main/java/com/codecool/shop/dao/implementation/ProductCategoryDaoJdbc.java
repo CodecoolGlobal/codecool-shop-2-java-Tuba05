@@ -2,6 +2,7 @@ package com.codecool.shop.dao.implementation;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.model.Department;
+import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
@@ -34,7 +35,18 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public ProductCategory find(int id) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM product_categories WHERE id = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return new ProductCategory(rs.getString(2), new Department(rs.getString(3)), rs.getString(4));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -55,7 +67,15 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public List<ProductCategory> find(String department) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM product_categories WHERE department = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, department);
+            ResultSet rs = st.executeQuery();
+            return getListOfProductCategories(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -68,16 +88,19 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT * FROM product_categories";
             ResultSet rs = conn.createStatement().executeQuery(sql);
-            List<ProductCategory> productCategories = new ArrayList<>();
-            while (rs.next()){
-                ProductCategory productCategory =
-                        new ProductCategory(rs.getString(2), new Department(rs.getString(3)), rs.getString(4));
-                productCategory.setId(rs.getInt(1));
-                productCategories.add(productCategory);
-            }
-            return productCategories;
+            return getListOfProductCategories(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private List<ProductCategory> getListOfProductCategories(ResultSet rs) throws SQLException {
+        List<ProductCategory> productCategories = new ArrayList<>();
+        while (rs.next()){
+            ProductCategory product = new ProductCategory(rs.getString(2), new Department(rs.getString(3)), rs.getString(4));
+            product.setId(rs.getInt(1));
+            productCategories.add(product);
+        }
+        return productCategories;
     }
 }
