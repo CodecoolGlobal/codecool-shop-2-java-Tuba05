@@ -12,7 +12,7 @@ const querySelectors = {
 
 querySelectors.departments.forEach(department => {
     department.addEventListener('click', () => {
-        getAllCategory(department.dataset.name)
+        getAllCategory.init(department.dataset.name)
     });
 })
 
