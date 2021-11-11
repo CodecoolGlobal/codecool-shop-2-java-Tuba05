@@ -16,6 +16,13 @@ const modal = document.getElementById('id01');
 
 homeButton.addEventListener('click', event => {
         init();
+
+    }
+)
+
+loginButton.addEventListener('click', event => {
+    modal.style.display = "block";
+
     }
 )
 

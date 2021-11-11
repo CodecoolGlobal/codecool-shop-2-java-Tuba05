@@ -13,7 +13,11 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String uname = request.getParameter("uname");
         String pass = request.getParameter("psw");
+
+        if(uname.equals("User") && pass.equals("asd")) {
+
         if(uname.equals("Jane Doe") && pass.equals("asd")) {
+
             HttpSession session = request.getSession();
             session.setAttribute("uname", uname);
             response.sendRedirect("home");
