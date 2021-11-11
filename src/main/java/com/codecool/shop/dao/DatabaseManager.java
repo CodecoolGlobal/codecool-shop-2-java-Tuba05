@@ -2,6 +2,7 @@ package com.codecool.shop.dao;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
@@ -46,6 +47,18 @@ public class DatabaseManager {
 
     public void saveSupplier(Supplier supplier){
         supplierDao.add(supplier);
+    }
+
+    public List<Product> getAllProducts(){
+        return productDao.getAll();
+    }
+
+    public List<ProductCategory> getAllProductCategory(){
+        return productCategoryDao.getAll();
+    }
+
+    public List<Supplier> getAllSupplier(){
+        return supplierDao.getAll();
     }
 
     private DataSource connect() throws SQLException {

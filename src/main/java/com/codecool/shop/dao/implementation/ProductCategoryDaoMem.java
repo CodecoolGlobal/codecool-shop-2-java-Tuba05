@@ -38,6 +38,11 @@ public class ProductCategoryDaoMem implements ProductCategoryDao {
     }
 
     @Override
+    public ProductCategory findByName(String name) {
+        return null;
+    }
+
+    @Override
     public List <ProductCategory> find(String department) {
         return data.stream().filter(t -> t.getDepartment().getName().equals(department)).collect(Collectors.toList());
     }
