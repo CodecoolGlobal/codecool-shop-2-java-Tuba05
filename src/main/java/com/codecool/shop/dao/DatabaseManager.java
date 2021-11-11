@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.codecool.shop.dao.*;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
+import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoJdbc;
 import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
 import com.codecool.shop.model.Product;
@@ -15,11 +16,12 @@ import org.postgresql.ds.PGSimpleDataSource;
 
 public class DatabaseManager {
 
-    private DepartmentDao departmentDao;
-    private ProductDao productDao;
-    private ProductCategoryDao productCategoryDao;
-    private ShoppingCartDao shoppingCartDao;
-    private SupplierDao supplierDao;
+    public DepartmentDao departmentDao;
+    public ProductDao productDao;
+    public ProductCategoryDao productCategoryDao;
+    public ShoppingCartDao shoppingCartDao;
+    public SupplierDao supplierDao;
+    private static DatabaseManager instance = null;
 
     public DatabaseManager() throws SQLException {
         DataSource dataSource = connect();
@@ -27,6 +29,14 @@ public class DatabaseManager {
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
 //        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
+    }
+
+    public static DatabaseManager getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new DatabaseManager();
+            return instance;
+        }
+        else throw new SQLException();
     }
 
     public void setup() throws SQLException {

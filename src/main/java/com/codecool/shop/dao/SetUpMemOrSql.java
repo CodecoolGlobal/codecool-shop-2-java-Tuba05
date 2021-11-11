@@ -19,7 +19,7 @@ public class SetUpMemOrSql {
             if (Objects.equals(dbKeyWord, "jdbc")) {
                 return true;
             }
-            else{
+            else if(Objects.equals(dbKeyWord, "memory")){
                 return false;
             }
 

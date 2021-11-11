@@ -33,7 +33,7 @@ public class Initializer implements ServletContextListener {
 
         DatabaseManager databaseManager = null;
         try {
-            databaseManager = new DatabaseManager();
+            databaseManager = DatabaseManager.getInstance();
         } catch (SQLException e) {
             e.printStackTrace();
         }

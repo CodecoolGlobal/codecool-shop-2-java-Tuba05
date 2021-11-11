@@ -1,9 +1,6 @@
 package com.codecool.shop.dao.implementation;
 
-import com.codecool.shop.dao.ProductCategoryDao;
-import com.codecool.shop.dao.ProductDao;
-import com.codecool.shop.dao.ShoppingCartDao;
-import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.dao.*;
 import com.codecool.shop.model.Department;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
@@ -56,17 +53,7 @@ public class ProductDaoJdbc implements ProductDao {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT * FROM products";
             ResultSet rs = conn.createStatement().executeQuery(sql);
-            List<Product> products = new ArrayList<>();
-            while (rs.next()){
-                if(productCategoryDao!=null || supplierDao!=null){
-                    Product product =
-                            new Product(rs.getString(2), rs.getBigDecimal(3), "USD", rs.getString(4),
-                                    productCategoryDao.findByName(rs.getString(4)), supplierDao.find(rs.getString(5)));
-                    product.setId(rs.getInt(1));
-                    products.add(product);
-                }
-            }
-            return products;
+            return getListOfProducts(rs);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -74,21 +61,65 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public List<Product> getBy(Supplier supplier) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products WHERE supplier = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, supplier.getName());
+            ResultSet rs = st.executeQuery();
+            return getListOfProducts(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Product> getBySupplier(String supplier) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products WHERE supplier = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, supplier);
+            ResultSet rs = st.executeQuery();
+            return getListOfProducts(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Product> getBy(ProductCategory productCategory) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products WHERE category = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, productCategory.getName());
+            ResultSet rs = st.executeQuery();
+            return getListOfProducts(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Product> getBy(String productCategory) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products WHERE category = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, productCategory);
+            ResultSet rs = st.executeQuery();
+            return getListOfProducts(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private List<Product> getListOfProducts(ResultSet rs) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        while (rs.next()){
+            Product product =
+                    new Product(rs.getString(2), rs.getBigDecimal(3), "USD", rs.getString(4),
+                            productCategoryDao.findByName(rs.getString(4)), supplierDao.find(rs.getString(5)));
+            product.setId(rs.getInt(1));
+            products.add(product);
+        }
+        return products;
     }
 }
