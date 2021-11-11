@@ -57,13 +57,14 @@ public class DatabaseManager {
         supplierDao.add(supplier);
     }
 
+    public void saveProductCategory(ProductCategory productCategory){
+        productCategoryDao.add(productCategory);
+    }
+
+    //Get Products
 
     public List<Product> getAllProducts(){
         return productDao.getAll();
-    }
-
-    public List<Supplier> getAllSupplier(){
-        return supplierDao.getAll();
     }
 
     public List<Product> getProductsBySupplier(Supplier supplier){
@@ -85,9 +86,14 @@ public class DatabaseManager {
     public ProductCategory findProductCategoryById(int id){
         return productCategoryDao.find(id);
     }
+
     public ProductCategory findProductCategoryByName(String name){
         return productCategoryDao.findByName(name);
     }
+
+
+    //Get ProductCategorys
+
     public List <ProductCategory> findProductCategoryByDepartment(String department){
         return productCategoryDao.find(department);
     }
@@ -97,6 +103,13 @@ public class DatabaseManager {
 
     public List<ProductCategory> getAllProductCategory(){
         return productCategoryDao.getAll();
+    }
+
+
+    //Get Suppliers
+
+    public List<Supplier> getAllSupplier(){
+        return supplierDao.getAll();
     }
 
     private DataSource connect() throws SQLException {
