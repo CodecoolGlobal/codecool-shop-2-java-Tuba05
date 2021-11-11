@@ -1,4 +1,4 @@
-create database codecool_shop;
+create database codecool_shop_;
 create schema public;
 
 create table suppliers

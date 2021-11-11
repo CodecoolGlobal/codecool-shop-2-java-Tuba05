@@ -186,7 +186,6 @@ h1 {
 
 /* The Modal (background) */
 
-.modal {
 
 .login-modal {
 
@@ -204,12 +203,6 @@ h1 {
 }
 
 /* Modal Content/Box */
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
 
 .login-modal-content {
     background-color: #fefefe;
@@ -237,16 +230,6 @@ h1 {
     cursor: pointer;
 }
 
-
-.psw {
-    background-color: #ffd900;
-    color: #333333;
-}
-
-.psw:hover {
-    background-color: #776602;
-    color: #333333;
-}
 
 
 /* Add Zoom Animation */
@@ -293,7 +276,6 @@ button {
 
 /* Add a hover effect for buttons */
 
-button:hover {
 
 button:hover,
 .pswbtn:hover {
@@ -310,8 +292,6 @@ button:hover,
 }
 
 
-
-}
 
 .pswbtn {
     width: auto;
@@ -341,11 +321,7 @@ button:hover,
 
 /* Avatar image */
 img.avatar {
-
-    width: 40%;
-
     width: 20%;
-
     border-radius: 50%;
 }
 

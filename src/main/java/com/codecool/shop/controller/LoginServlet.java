@@ -14,8 +14,6 @@ public class LoginServlet extends HttpServlet {
         String uname = request.getParameter("uname");
         String pass = request.getParameter("psw");
 
-        if(uname.equals("User") && pass.equals("asd")) {
-
         if(uname.equals("Jane Doe") && pass.equals("asd")) {
 
             HttpSession session = request.getSession();

@@ -18,19 +18,8 @@ querySelectors.departments.forEach(department => {
 
 
 querySelectors.homeButton.addEventListener('click', () => {
-        getAllDepartment.init();
-  
+    getAllDepartment.init();})
 
-homeButton.addEventListener('click', event => {
-        init();
-
-    }
-)
-
-loginButton.addEventListener('click', event => {
-    modal.style.display = "block";
-    }
-)
 
 querySelectors.loginButton.addEventListener('click', () => {
         querySelectors.modal.style.display = "block";
