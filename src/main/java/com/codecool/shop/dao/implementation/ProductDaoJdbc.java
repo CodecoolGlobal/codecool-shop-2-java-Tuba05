@@ -1,19 +1,24 @@
 package com.codecool.shop.dao.implementation;
 
+import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.ShoppingCartDao;
+import com.codecool.shop.dao.SupplierDao;
+import com.codecool.shop.model.Department;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoJdbc implements ProductDao {
-
+    private ProductDao productDao;
+    private ProductCategoryDao productCategoryDao;
+    private ShoppingCartDao shoppingCartDao;
+    private SupplierDao supplierDao;
     private final DataSource dataSource;
 
     public ProductDaoJdbc(DataSource dataSource) {
@@ -48,7 +53,21 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products";
+            ResultSet rs = conn.createStatement().executeQuery(sql);
+            List<Product> products = new ArrayList<>();
+            while (rs.next()){
+                Product product =
+                        new Product(rs.getString(2), rs.getBigDecimal(3), "USD", rs.getString(4),
+                                productCategoryDao.findByName(rs.getString(4)), supplierDao.find(rs.getString(5)));
+                product.setId(rs.getInt(1));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
