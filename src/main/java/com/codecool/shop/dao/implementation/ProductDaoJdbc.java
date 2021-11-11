@@ -40,7 +40,19 @@ public class ProductDaoJdbc implements ProductDao {
 
     @Override
     public Product find(int id) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM products WHERE id = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return new Product(rs.getString(2), rs.getBigDecimal(3), "USD", rs.getString(4),
+                    productCategoryDao.findByName(rs.getString(4)), supplierDao.find(rs.getString(5)));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
