@@ -82,9 +82,9 @@ public class Initializer implements ServletContextListener {
 
         if(daoTypeIsSql){
             if(databaseManager.getAllDepartment().size()==0){
-                databaseManager.saveDepartment(hotStuff);
-                databaseManager.saveDepartment(flash);
-                databaseManager.saveDepartment(flux);
+                databaseManager.saveDepartment(accessories);
+                databaseManager.saveDepartment(clothes);
+                databaseManager.saveDepartment(shoes);
             }
         }
 

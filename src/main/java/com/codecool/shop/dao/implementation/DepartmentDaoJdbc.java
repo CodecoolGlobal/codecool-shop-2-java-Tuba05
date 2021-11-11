@@ -9,10 +9,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeparmentDaoJdbc implements DepartmentDao {
+public class DepartmentDaoJdbc implements DepartmentDao {
     private final DataSource dataSource;
 
-    public DeparmentDaoJdbc(DataSource dataSource) {
+    public DepartmentDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -64,9 +64,11 @@ public class DeparmentDaoJdbc implements DepartmentDao {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT * FROM department";
             ResultSet rs = conn.createStatement().executeQuery(sql);
-            Department department = new Department(rs.getString(2));
-            department.setId(rs.getInt(1));
-            departments.add(department);
+            while (rs.next()){
+                Department department = new Department(rs.getString(2));
+                department.setId(rs.getInt(1));
+                departments.add(department);
+            }
             return departments;
         } catch (SQLException e) {
             throw new RuntimeException(e);

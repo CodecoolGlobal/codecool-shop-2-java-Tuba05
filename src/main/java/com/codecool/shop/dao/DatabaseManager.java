@@ -25,7 +25,7 @@ public class DatabaseManager {
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
         productDao = new ProductDaoJdbc(dataSource, productCategoryDao, supplierDao);
-        departmentDao = new DeparmentDaoJdbc(dataSource);
+        departmentDao = new DepartmentDaoJdbc(dataSource);
 //        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
     }
 
