@@ -70,6 +70,24 @@ public class Initializer implements ServletContextListener {
         Department clothes = new Department("Clothes");
         Department shoes = new Department("Shoes");
 
+        //Save to Mem
+
+        if(!daoTypeIsSql){
+            departmentDataStore.add(accessories);
+            departmentDataStore.add(clothes);
+            departmentDataStore.add(shoes);
+        }
+
+        // Save to SqlDataBase
+
+        if(daoTypeIsSql){
+            if(databaseManager.getAllDepartment().size()==0){
+                databaseManager.saveDepartment(hotStuff);
+                databaseManager.saveDepartment(flash);
+                databaseManager.saveDepartment(flux);
+            }
+        }
+
         //setting up a new product category
 
         ProductCategory glasses = new ProductCategory("Glasses", new Department("Accessories"), "Glasses for everyone.");
@@ -128,9 +146,6 @@ public class Initializer implements ServletContextListener {
             productDataStore.add(new Product("Boot with heels", new BigDecimal("50"), "USD", "Must-have item.", boots, hotStuff));
             productDataStore.add(new Product("Audio cassette", new BigDecimal("2"), "USD", "Brings you the music", other, hotStuff));
             productDataStore.add(new Product("Fluxus capacitor", new BigDecimal("1985"), "USD", "Takes you back to the future.", other, flux));
-            departmentDataStore.add(accessories);
-            departmentDataStore.add(clothes);
-            departmentDataStore.add(shoes);
         }
 
         //Save to Sql

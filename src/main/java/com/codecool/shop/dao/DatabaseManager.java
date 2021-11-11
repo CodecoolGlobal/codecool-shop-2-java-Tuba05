@@ -25,9 +25,9 @@ public class DatabaseManager {
 
     public DatabaseManager() throws SQLException {
         DataSource dataSource = connect();
-        productDao = new ProductDaoJdbc(dataSource);
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
+        productDao = new ProductDaoJdbc(dataSource, productCategoryDao, supplierDao);
 //        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
     }
 
@@ -36,16 +36,9 @@ public class DatabaseManager {
             instance = new DatabaseManager();
             return instance;
         }
-        else throw new SQLException();
+        return instance;
     }
 
-    public void setup() throws SQLException {
-        DataSource dataSource = connect();
-        productDao = new ProductDaoJdbc(dataSource);
-        productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
-        supplierDao = new SupplierDaoJdbc(dataSource);
-//        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
-    }
 
     //Saves
 

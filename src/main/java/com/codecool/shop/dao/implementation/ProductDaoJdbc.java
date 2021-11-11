@@ -12,14 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoJdbc implements ProductDao {
-    private ProductDao productDao;
     private ProductCategoryDao productCategoryDao;
     private ShoppingCartDao shoppingCartDao;
     private SupplierDao supplierDao;
     private final DataSource dataSource;
 
-    public ProductDaoJdbc(DataSource dataSource) {
+    public ProductDaoJdbc(DataSource dataSource, ProductCategoryDao productCategoryDao, SupplierDao supplierDao) {
         this.dataSource = dataSource;
+        this.productCategoryDao = productCategoryDao;
+        this.supplierDao = supplierDao;
     }
 
     @Override
@@ -135,7 +136,7 @@ public class ProductDaoJdbc implements ProductDao {
         while (rs.next()){
             Product product =
                     new Product(rs.getString(2), rs.getBigDecimal(3), "USD", rs.getString(4),
-                            productCategoryDao.findByName(rs.getString(4)), supplierDao.find(rs.getString(5)));
+                            productCategoryDao.findByName(rs.getString(5)), supplierDao.find(rs.getString(6)));
             product.setId(rs.getInt(1));
             products.add(product);
         }

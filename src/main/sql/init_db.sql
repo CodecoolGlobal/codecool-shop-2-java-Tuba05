@@ -47,5 +47,18 @@ alter table products
     add constraint products_pk
         primary key (id);
 
+create table department
+(
+    id serial,
+    name text
+);
+
+create unique index department_id_uindex
+    on department (id);
+
+alter table department
+    add constraint department_pk
+        primary key (id);
+
 
 
