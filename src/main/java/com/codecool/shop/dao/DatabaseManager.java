@@ -5,10 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.codecool.shop.dao.*;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoJdbc;
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
-import com.codecool.shop.dao.implementation.ProductDaoJdbc;
-import com.codecool.shop.dao.implementation.SupplierDaoJdbc;
+import com.codecool.shop.dao.implementation.*;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
@@ -28,6 +25,7 @@ public class DatabaseManager {
         productCategoryDao = new ProductCategoryDaoJdbc(dataSource);
         supplierDao = new SupplierDaoJdbc(dataSource);
         productDao = new ProductDaoJdbc(dataSource, productCategoryDao, supplierDao);
+        departmentDao = new DeparmentDaoJdbc(dataSource);
 //        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
     }
 
