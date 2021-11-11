@@ -38,6 +38,22 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     }
 
     @Override
+    public ProductCategory findByName(String name) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM product_categories WHERE name = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return new ProductCategory(rs.getString(2), new Department(rs.getString(3)), rs.getString(4));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<ProductCategory> find(String department) {
         return null;
     }
@@ -50,7 +66,7 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
     @Override
     public List<ProductCategory> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM codecool_shop";
+            String sql = "SELECT * FROM product_categories";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<ProductCategory> productCategories = new ArrayList<>();
             while (rs.next()){
