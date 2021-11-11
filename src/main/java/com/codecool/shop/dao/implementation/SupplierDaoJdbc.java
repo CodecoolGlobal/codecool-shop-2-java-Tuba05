@@ -35,6 +35,22 @@ public class SupplierDaoJdbc implements SupplierDao {
     }
 
     @Override
+    public Supplier find(String name) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT * FROM suppliers WHERE name = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1, name);
+            ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+            return new Supplier(rs.getString(2), rs.getString(3));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void remove(int id) {
 
     }
@@ -42,7 +58,7 @@ public class SupplierDaoJdbc implements SupplierDao {
     @Override
     public List<Supplier> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT * FROM codecool_shop";
+            String sql = "SELECT * FROM suppliers";
             ResultSet rs = conn.createStatement().executeQuery(sql);
             List<Supplier> suppliers = new ArrayList<>();
             while (rs.next()){
