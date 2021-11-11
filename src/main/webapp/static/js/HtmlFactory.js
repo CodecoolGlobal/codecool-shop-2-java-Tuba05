@@ -53,7 +53,7 @@ export default class HtmlFactory {
                         <p class="lead">${this.item.defaultPrice} $</p>
                     </div>
                     <div class="card-btn" id="${this.item.id}">
-                        <a class="btn btn-success" style="background: #ffd900; color: #333333; border-color: #ffd900">Add to cart</a>
+                        <a class="btn btn-success" style="background: #ffd900; color: #333333; border-color: #ffd900">${this.str}</a>
                     </div>
                 </div>
             </div>
