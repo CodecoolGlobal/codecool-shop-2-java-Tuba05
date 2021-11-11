@@ -1,18 +1,25 @@
 import {getAllProductsByCategory} from "./getAllProductByCategory.js";
 import {getAllCategory} from "./getAllCategoryByDepartment.js";
-import {init} from "./getAllDepartment.js";
+import {getAllDepartment} from "./getAllDepartment.js";
 
-const departments = document.querySelectorAll(".department-button");
-departments.forEach(department => {
+const querySelectors = {
+    departments: document.querySelectorAll(".department-button"),
+    categories: document.querySelectorAll(".category-button"),
+    homeButton: document.querySelector(".home-button"),
+    loginButton: document.querySelector(".login-button"),
+    modal: document.getElementById('id01')
+}
+
+querySelectors.departments.forEach(department => {
     department.addEventListener('click', () => {
-        getAllCategory(department.dataset.name)
+        getAllCategory.init(department.dataset.name)
     });
 })
 
-const categories = document.querySelectorAll(".category-button");
-const homeButton = document.querySelector(".home-button");
-const loginButton = document.querySelector(".login-button");
-const modal = document.getElementById('id01');
+
+querySelectors.homeButton.addEventListener('click', () => {
+        getAllDepartment.init();
+  
 
 homeButton.addEventListener('click', event => {
         init();
@@ -22,17 +29,15 @@ homeButton.addEventListener('click', event => {
 
 loginButton.addEventListener('click', event => {
     modal.style.display = "block";
-
     }
 )
 
-loginButton.addEventListener('click', event => {
-    modal.style.display = "block";
+querySelectors.loginButton.addEventListener('click', () => {
+        querySelectors.modal.style.display = "block";
     }
 )
 
-
-categories.forEach(category => {
+querySelectors.categories.forEach(category => {
     category.addEventListener('click', () => {
         getAllProductsByCategory(category.innerHTML);
     })
