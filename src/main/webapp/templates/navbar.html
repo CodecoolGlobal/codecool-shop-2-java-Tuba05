@@ -2,7 +2,7 @@
     <div class="nav-bar">
         <a class="home-button" href="#">Home</a>
         <a class="login-button" href="#" th:if="${session.uname == null}">Login</a>
-        <a class="login-button" href="#" th:unless="${ session.uname == null}">Logout</a>
+        <a class="logout-button" href="/logout" th:unless="${ session.uname == null}">Logout</a>
         <div th:replace="login-modal.html :: login-modal"></div>
         <div class="dropdown-class">
             <button class="dropdown-button department-button" data-name="Clothes">Clothes
@@ -37,7 +37,16 @@
             </div>
 
         </div>
-            <span class="username" th:if="${ session.uname != null}" th:text="'Logged in as '+ ${session.uname}"></span>
+        <div th:if="${ session.uname != null}"class="dropdown-class">
+            <button class="dropdown-button user-button" data-name="User" th:text=" ${session.uname}">
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-list">
+                <a href="/profile" class="profile-button">Profile</a>
+                <a href="/wishlist" class="wishlist-button">Wishlist</a>
+                <a href="/logout" class="logout-button">Logout</a>
+            </div>
+        </div>
         <!--Large modal-->
         <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i
                 class="fa fa-shopping-cart"></i> Cart
