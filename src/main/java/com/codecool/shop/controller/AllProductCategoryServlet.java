@@ -39,7 +39,7 @@ public class AllProductCategoryServlet extends HttpServlet {
 
         String department = request.getParameter("department");
         List<ProductCategory> categories;
-        if(daoTypeIsSql){categories=databaseManager.getAllProductCategory();}
+        if(daoTypeIsSql){categories=databaseManager.findProductCategoryByDepartment(department);}
         else {categories=productCategoryDao.find(department);}
         Gson gson = new Gson();
         PrintWriter out = response.getWriter();
