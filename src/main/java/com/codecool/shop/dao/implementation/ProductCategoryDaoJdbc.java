@@ -80,7 +80,14 @@ public class ProductCategoryDaoJdbc implements ProductCategoryDao {
 
     @Override
     public void remove(int id) {
-
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "DELETE * FROM product_categories WHERE id = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
