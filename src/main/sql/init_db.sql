@@ -1,12 +1,38 @@
 create database codecool_shop;
+create schema public;
 
-create schema schema_name;
-
-create table "Products"
+create table suppliers
 (
-    id serial
-        constraint products_pk
-            primary key,
+    id serial,
+    name text,
+    products text
+);
+
+create unique index suppliers_id_uindex
+    on suppliers (id);
+
+alter table suppliers
+    add constraint suppliers_pk
+        primary key (id);
+
+create table product_categories
+(
+    id serial,
+    name text,
+    department text,
+    description text
+);
+
+create unique index product_categories_id_uindex
+    on product_categories (id);
+
+alter table product_categories
+    add constraint product_categories_pk
+        primary key (id);
+
+create table products
+(
+    id serial,
     name text,
     price int,
     description text,
@@ -14,22 +40,12 @@ create table "Products"
     supplier text
 );
 
-create table "ProductCategories"
-(
-    id serial
-        constraint productcategories_pk
-            primary key,
-    name text,
-    department text,
-    description text
-);
+create unique index products_id_uindex
+    on products (id);
 
-create table "Suppliers"
-(
-    id int
-        constraint suppliers_pk
-            primary key,
-    name text,
-    product_type text
-);
+alter table products
+    add constraint products_pk
+        primary key (id);
+
+
 
