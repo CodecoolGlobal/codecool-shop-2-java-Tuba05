@@ -16,6 +16,13 @@ const modal = document.getElementById('id01');
 
 homeButton.addEventListener('click', event => {
         init();
+
+    }
+)
+
+loginButton.addEventListener('click', event => {
+    modal.style.display = "block";
+
     }
 )
 
@@ -23,6 +30,7 @@ loginButton.addEventListener('click', event => {
     modal.style.display = "block";
     }
 )
+
 
 categories.forEach(category => {
     category.addEventListener('click', () => {

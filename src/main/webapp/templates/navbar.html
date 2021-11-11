@@ -1,9 +1,14 @@
 <div th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="nav-bar">
         <a class="home-button" href="#">Home</a>
+
         <a class="login-button" href="#" th:if="${!session.uname}">Login</a>
         <a class="login-button" href="#" th:unless="${!session.uname}">Logout</a>
         </div>
+
+        <a class="login-button" href="#" th:if="${session.uname == null}">Login</a>
+        <a class="logout-button" href="/logout" th:unless="${ session.uname == null}">Logout</a>
+
         <div th:replace="login-modal.html :: login-modal"></div>
         <div class="dropdown-class">
             <button class="dropdown-button department-button" data-name="Clothes">Clothes
@@ -24,6 +29,7 @@
                 <a href="#" class="category-button">Sneakers</a>
                 <a href="#" class="category-button">Boots</a>
             </div>
+
         </div>
 
         <div class="dropdown-class">
@@ -34,6 +40,17 @@
                 <a href="#" class="category-button">Glasses</a>
                 <a href="#" class="category-button">Jewelery</a>
                 <a href="#" class="category-button">Other</a>
+            </div>
+
+        </div>
+        <div th:if="${ session.uname != null}"class="dropdown-class">
+            <button class="dropdown-button user-button" data-name="User" th:text=" ${session.uname}">
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-list">
+                <a href="/profile" class="profile-button">Profile</a>
+                <a href="/wishlist" class="wishlist-button">Wishlist</a>
+                <a href="/logout" class="logout-button">Logout</a>
             </div>
         </div>
         <!--Large modal-->

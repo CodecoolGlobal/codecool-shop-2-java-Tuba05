@@ -1,11 +1,19 @@
 <div th:fragment="login-modal">
     <!-- The Modal -->
+
     <div id="id01" class="modal">
+
+    <div id="id01" class="login-modal">
+
     <span onclick="document.getElementById('id01').style.display='none'"
         class="close" title="Close Modal">&times;</span>
 
         <!-- Modal Content -->
+
         <form class="modal-content animate" action="login" method="post">
+
+        <form class="login-modal-content animate" action="login" method="post">
+
             <div class="imgcontainer">
                 <img src="static/img/login.jpg" alt="Avatar" class="avatar">
             </div>
@@ -25,7 +33,11 @@
 
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+
                 <span class="psw"> <a href="#">Forgot password?</a></span>
+
+                <span class="pswbtn" > <a  href="#">Forgot password?</a> </span>
+
             </div>
         </form>
     </div>
