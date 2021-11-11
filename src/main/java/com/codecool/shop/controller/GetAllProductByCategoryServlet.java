@@ -42,7 +42,6 @@ public class GetAllProductByCategoryServlet extends HttpServlet {
         List<Product> productList;
         if(daoTypeIsSql){productList=databaseManager.getProductsByProductCategory(category);}
         else {productList=productDao.getBy(category);}
-                 productDao.getBy(category);
         Gson gson = new Gson();
         PrintWriter out = response.getWriter();
         out.println(gson.toJson(productList));
