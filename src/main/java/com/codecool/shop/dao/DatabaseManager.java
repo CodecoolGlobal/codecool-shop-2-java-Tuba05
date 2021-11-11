@@ -47,24 +47,19 @@ public class DatabaseManager {
 //        shoppingCartDao = new ShoppingCartDaoJdbc(dataSource);
     }
 
+    //Saves
+
     public void saveProduct(Product product){
         productDao.add(product);
-    }
-
-    public void saveProductCategory(ProductCategory productCategory){
-        productCategoryDao.add(productCategory);
     }
 
     public void saveSupplier(Supplier supplier){
         supplierDao.add(supplier);
     }
 
+
     public List<Product> getAllProducts(){
         return productDao.getAll();
-    }
-
-    public List<ProductCategory> getAllProductCategory(){
-        return productCategoryDao.getAll();
     }
 
     public List<Supplier> getAllSupplier(){
@@ -78,12 +73,31 @@ public class DatabaseManager {
     public List<Product> getProductsBySupplier(String supplier){
         return productDao.getBySupplier(supplier);
     };
+
     public List<Product> getProductsByProductCategory(ProductCategory productCategory){
         return productDao.getBy(productCategory);
-    };
+    }
+
     public List<Product> getProductsByProductCategory(String productCategory){
         return productDao.getBy(productCategory);
-    };
+    }
+
+    public ProductCategory findProductCategoryById(int id){
+        return productCategoryDao.find(id);
+    }
+    public ProductCategory findProductCategoryByName(String name){
+        return productCategoryDao.findByName(name);
+    }
+    public List <ProductCategory> findProductCategoryByDepartment(String department){
+        return productCategoryDao.find(department);
+    }
+    public void removeProductCategory(int id){
+        productCategoryDao.remove(id);
+    }
+
+    public List<ProductCategory> getAllProductCategory(){
+        return productCategoryDao.getAll();
+    }
 
     private DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
