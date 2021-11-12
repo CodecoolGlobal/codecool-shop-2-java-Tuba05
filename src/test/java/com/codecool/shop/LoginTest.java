@@ -23,34 +23,46 @@ import static org.mockito.Mockito.verify;
 
 
 public class LoginTest {
+    HttpServletRequest mockedRequest;
+    HttpServletResponse mockedResponse;
+    HttpSession mockedSession;
+    LoginServlet loginServlet;
+    ArgumentCaptor<String> captor;
+
+    @BeforeEach
+    public void setMockedObjects() {
+        mockedRequest = Mockito.mock(HttpServletRequest.class);
+        mockedResponse = Mockito.mock(HttpServletResponse.class);
+        mockedSession = Mockito.mock(HttpSession.class);
+    }
+
+    @BeforeEach
+    public void setLoginServlet() {
+        loginServlet = new LoginServlet();
+    }
+
+    @BeforeEach
+    public void setCaptor() {
+        captor = ArgumentCaptor.forClass(String.class);
+    }
 
     @Test
     void login_with_valid_username_and_password_return_true() throws ServletException, IOException {
-        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-        Mockito.when(request.getParameter("uname")).thenReturn("Jane Doe");
-        Mockito.when(request.getParameter("psw")).thenReturn("asd");
-        HttpSession session = Mockito.mock(HttpSession.class);
-        Mockito.when(request.getSession()).thenReturn(session);
-        LoginServlet loginServlet = new LoginServlet();
-        loginServlet.doPost(request, response);
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        verify(response).sendRedirect(captor.capture());
+        Mockito.when(mockedRequest.getParameter("uname")).thenReturn("Jane Doe");
+        Mockito.when(mockedRequest.getParameter("psw")).thenReturn("asd");
+        Mockito.when(mockedRequest.getSession()).thenReturn(mockedSession);
+        loginServlet.doPost(mockedRequest, mockedResponse);
+        verify(mockedResponse).sendRedirect(captor.capture());
         Assertions.assertEquals("home", captor.getValue());
     }
 
     @Test
     void login_with_invalid_username_and_password_return_false() throws ServletException, IOException {
-        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        HttpServletResponse response = Mockito.mock(HttpServletResponse.class);
-        Mockito.when(request.getParameter("uname")).thenReturn("Invalid name");
-        Mockito.when(request.getParameter("psw")).thenReturn("123");
-        HttpSession session = Mockito.mock(HttpSession.class);
-        Mockito.when(request.getSession()).thenReturn(session);
-        LoginServlet loginServlet = new LoginServlet();
-        loginServlet.doPost(request, response);
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        verify(response).sendRedirect(captor.capture());
+        Mockito.when(mockedRequest.getParameter("uname")).thenReturn("Invalid name");
+        Mockito.when(mockedRequest.getParameter("psw")).thenReturn("123");
+        Mockito.when(mockedRequest.getSession()).thenReturn(mockedSession);
+        loginServlet.doPost(mockedRequest, mockedResponse);
+        verify(mockedResponse).sendRedirect(captor.capture());
         Assertions.assertNotEquals("home", captor.getValue());
     }
 }
