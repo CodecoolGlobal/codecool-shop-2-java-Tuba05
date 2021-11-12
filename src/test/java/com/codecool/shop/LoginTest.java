@@ -31,9 +31,14 @@ public class LoginTest {
 
     @BeforeEach
     public void setMockedObjects() {
-        mockedRequest = Mockito.mock(HttpServletRequest.class);
+        mockedRequest = getMockedRequest();
         mockedResponse = Mockito.mock(HttpServletResponse.class);
+    }
+    public HttpServletRequest getMockedRequest(){
+        HttpServletRequest mockedRequest = Mockito.mock(HttpServletRequest.class);
         mockedSession = Mockito.mock(HttpSession.class);
+        Mockito.when(mockedRequest.getSession()).thenReturn(mockedSession);
+        return mockedRequest;
     }
 
     @BeforeEach
@@ -50,7 +55,6 @@ public class LoginTest {
     void login_with_valid_username_and_password_return_true() throws ServletException, IOException {
         Mockito.when(mockedRequest.getParameter("uname")).thenReturn("Jane Doe");
         Mockito.when(mockedRequest.getParameter("psw")).thenReturn("asd");
-        Mockito.when(mockedRequest.getSession()).thenReturn(mockedSession);
         loginServlet.doPost(mockedRequest, mockedResponse);
         verify(mockedResponse).sendRedirect(captor.capture());
         Assertions.assertEquals("home", captor.getValue());
@@ -60,7 +64,6 @@ public class LoginTest {
     void login_with_invalid_username_and_password_return_false() throws ServletException, IOException {
         Mockito.when(mockedRequest.getParameter("uname")).thenReturn("Invalid name");
         Mockito.when(mockedRequest.getParameter("psw")).thenReturn("123");
-        Mockito.when(mockedRequest.getSession()).thenReturn(mockedSession);
         loginServlet.doPost(mockedRequest, mockedResponse);
         verify(mockedResponse).sendRedirect(captor.capture());
         Assertions.assertNotEquals("home", captor.getValue());
