@@ -1,96 +1,97 @@
 <div th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="nav-bar">
         <a class="home-button" href="#">Home</a>
-        <a class="login-button" href="#" th:if="${session.uname == null}">Login</a>
-        <a class="logout-button" href="/logout" th:unless="${ session.uname == null}">Logout</a>
-        <div th:replace="login-modal.html :: login-modal"></div>
-        <div class="dropdown-class">
-            <button class="dropdown-button department-button" data-name="Clothes">Clothes
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-list">
-                <a href="#" class="category-button">Coats</a>
-                <a href="#" class="category-button">T-Shirts</a>
-                <a href="#" class="category-button">Denim</a>
-            </div>
-        </div>
-        <div class="dropdown-class">
-            <button class="dropdown-button department-button" data-name="Shoes">Shoes
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-list">
-                <a href="#" class="category-button">Heels</a>
-                <a href="#" class="category-button">Sneakers</a>
-                <a href="#" class="category-button">Boots</a>
-            </div>
-
-        </div>
-
-        <div class="dropdown-class">
-            <button class="dropdown-button department-button" data-name="Accessories">Accessories
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-list">
-                <a href="#" class="category-button">Glasses</a>
-                <a href="#" class="category-button">Jewelery</a>
-                <a href="#" class="category-button">Other</a>
-            </div>
-
-        </div>
-        <div th:if="${ session.uname != null}"class="dropdown-class">
-            <button class="dropdown-button user-button" data-name="User" th:text=" ${session.uname}">
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-list">
-                <a href="/profile" class="profile-button">Profile</a>
-                <a href="/wishlist" class="wishlist-button">Wishlist</a>
-                <a href="/logout" class="logout-button">Logout</a>
-            </div>
-        </div>
-        <!--Large modal-->
-        <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i
-                class="fa fa-shopping-cart"></i> Cart
-            <span id="productnumber">0</span>
+    <a class="login-button" href="#" th:if="${session.uname == null}">Login</a>
+    <a class="logout-button" href="/logout" th:unless="${ session.uname == null}">Logout</a>
+    <div th:replace="login-modal.html :: login-modal"></div>
+    <div class="dropdown-class">
+        <button class="dropdown-button department-button" data-name="Clothes">Clothes
+            <i class="fa fa-caret-down"></i>
         </button>
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="container main-section">
-                        <div class="row">
-                            <div class="col-lg-12 pb-2">
-                                <h4>Shoping Cart</h4>
-                            </div>
-                            <div class="col-lg-12 pl-3 pt-3">
-                                <table class="table table-hover border bg-white">
-                                    <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th style="width:10%;">Quantity</th>
-                                        <th>Subtotal</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="cart-content">
-                                    </tbody>
-                                    <tr>
-                                        <td><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#"
-                                               class="btn btn-info text-white"><i class="fa fa-angle-left"></i> Continue
-                                            Shopping</a></td>
-                                        <td colspan="2" class="hidden-xs"></td>
-                                        <td class="hidden-xs text-center" style="width:10%;"><strong id="total-price">Total :
-                                            47,000</strong></td>
-                                        <td><a class="btn btn-success btn-block" id="check-out">Checkout <i
-                                                class="fa fa-angle-right"></i></a></td>
-                                    </tr>
+        <div class="dropdown-list">
+            <a href="#" class="category-button">Coats</a>
+            <a href="#" class="category-button">T-Shirts</a>
+            <a href="#" class="category-button">Denim</a>
+        </div>
+    </div>
+    <div class="dropdown-class">
+        <button class="dropdown-button department-button" data-name="Shoes">Shoes
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="#" class="category-button">Heels</a>
+            <a href="#" class="category-button">Sneakers</a>
+            <a href="#" class="category-button">Boots</a>
+        </div>
 
-                                </table>
-                            </div>
+    </div>
+
+    <div class="dropdown-class">
+        <button class="dropdown-button department-button" data-name="Accessories">Accessories
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="#" class="category-button">Glasses</a>
+            <a href="#" class="category-button">Jewelery</a>
+            <a href="#" class="category-button">Other</a>
+        </div>
+
+    </div>
+    <div th:if="${ session.uname != null}" class="dropdown-class">
+        <button class="dropdown-button user-button" data-name="User" th:text=" ${session.uname}">
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-list">
+            <a href="/profile" class="profile-button">Profile</a>
+            <a href="/wishlist" class="wishlist-button">Wishlist</a>
+            <a href="/logout" class="logout-button">Logout</a>
+        </div>
+    </div>
+    <!--Large modal-->
+    <button class="cart-button" data-toggle="modal" data-target=".bd-example-modal-lg" style="font-size:18px"><i
+            class="fa fa-shopping-cart"></i> Cart
+        <span id="productnumber">0</span>
+    </button>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container main-section">
+                    <div class="row">
+                        <div class="col-lg-12 pb-2">
+                            <h4>Shoping Cart</h4>
+                        </div>
+                        <div class="col-lg-12 pl-3 pt-3">
+                            <table class="table table-hover border bg-white">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th style="width:10%;">Quantity</th>
+                                    <th>Subtotal</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cart-content">
+                                </tbody>
+                                <tr>
+                                    <td><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#"
+                                           class="btn btn-info text-white"><i class="fa fa-angle-left"></i> Continue
+                                        Shopping</a></td>
+                                    <td colspan="2" class="hidden-xs"></td>
+                                    <td class="hidden-xs text-center" style="width:10%;"><strong id="total-price">Total
+                                        :
+                                        47,000</strong></td>
+                                    <td><a class="btn btn-success btn-block" id="check-out">Checkout <i
+                                            class="fa fa-angle-right"></i></a></td>
+                                </tr>
+
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

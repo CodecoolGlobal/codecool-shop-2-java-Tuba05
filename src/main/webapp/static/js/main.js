@@ -1,9 +1,9 @@
 
-import { init } from "./getAllDepartment.js";
+import { getAllDepartment } from "/static/js/getAllDepartment.js";
 import { checkOut } from "./shoppingCart.js";
 
 function main(){
-    init()
+    getAllDepartment.init();
     checkOut()
 }
 

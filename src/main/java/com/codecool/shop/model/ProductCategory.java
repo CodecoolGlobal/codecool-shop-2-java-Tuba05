@@ -8,7 +8,7 @@ public class ProductCategory extends BaseModel {
     private transient List<Product> products;
 
     public ProductCategory(String name, Department department, String description) {
-        super(name);
+        super(name, description);
         this.department = department;
         this.products = new ArrayList<>();
     }

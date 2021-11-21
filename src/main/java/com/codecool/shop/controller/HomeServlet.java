@@ -20,7 +20,12 @@ public class HomeServlet extends HttpServlet {
 
         if(session != null) {
             String uname = (String) session.getAttribute("uname");
+
+            pr.print("Welcome " + uname);
+            pr.print("<br/><a href=\"logout\">Logout</a>");
+
             response.sendRedirect("home.html");
+
 
         }
         else {
