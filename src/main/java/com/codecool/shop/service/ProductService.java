@@ -17,6 +17,7 @@ public class ProductService{
     }
 
     public ProductCategory getProductCategory(int categoryId){
+
         return productCategoryDao.find(categoryId);
     }
 
